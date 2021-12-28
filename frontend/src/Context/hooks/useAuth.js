@@ -36,5 +36,15 @@ export default function useAuth(){
         history.push('/login');
     }
 
-    return { loading, authenticated, handleLogin, handleLogout }
+    function handleRegister() {
+        setAuthenticated(true);
+        /*const {data: {token}} = api.post('/register');
+
+        localStorage.setItem('token', JSON.stringify(token));
+        api.defaults.headers.Authorization = `Bearer ${token}`;*/
+
+        history.push('/home');
+    }
+
+    return { loading, authenticated, handleLogin, handleLogout, handleRegister }
 }
