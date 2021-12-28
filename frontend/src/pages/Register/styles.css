@@ -1,14 +1,14 @@
-#login{
+#register{
     width: 100vw;
     height: 100vh;
 }
 
-#login-body {
+#register-body {
     display: flex;
     flex-direction: row;
 }
 
-#login-body-left {
+#register-body-left {
     width: 50vw;
 
     background-color: #EAEAEA;
@@ -16,7 +16,7 @@
 
 
 
-#login-body-left form {
+#register-body-left form {
     height:94vh;
     display: flex;
     flex-direction: column;
@@ -24,21 +24,21 @@
     justify-content: center;
 }
 
-#title-login {
+#title-register {
     width: 60%;
     margin-bottom: 30px;
 }
 
-#title-login h1 {
+#title-register h1 {
     font: 700 2.0rem Poppins;
 }
 
-#title-login h3 {
+#title-register h3 {
     font: 400 1.0rem Poppins;
 }
 
 
-#login-body-left form input {
+#register-body-left form input {
     width: 60%;
     height: 10px;
     font-size: 1.4rem;
@@ -49,16 +49,16 @@
 
 }
 
-#login-body-left form input[name="email"] {
+#register-body-left form input[name="nome"] {
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
 }
-#login-body-left form input[name="password"] {
+#register-body-left form input[name="password"] {
     border-bottom-left-radius: 0.4rem;
     border-bottom-right-radius: 0.4rem;
 }
 
-#login-body-left form button{
+#register-body-left form button{
     width: 60%;
     height: 56px;
     background-color: #24A5B2;
@@ -67,19 +67,19 @@
     border: none;
     border-radius: 0.4rem;
     outline: 0;
-    margin: 4rem 0;
+    margin: 2rem 0;
 }
 
-#login-body-left form h3 {
+#register-body-left form h3 {
     color: #6A6180;
     font: 400 1.2rem Poppins;
 }
-#login-body-left form a {
-    color: #8257E5;
+#register-body-left form a {
+    color: #24A5B2;
     font: 700 1.2rem Poppins;
 }
 
-#login-body-right {
+#register-body-right {
     width: 50vw;
 
     display: flex;
@@ -88,6 +88,6 @@
     justify-content: center;
 }
 
-#login-body-right img {
+#register-body-right img {
     width: 90%;
 }
