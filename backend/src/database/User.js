@@ -8,23 +8,24 @@ const User = connection.define('users', {
         allownull: false,
         primaryKey: true,
         autoIncrement: true,
+        unique: true
     },
 
     nickname: {
         type: Sequelize.STRING,
         allownull: false,
-        unique: true,
+        unique: true
     },
 
     password: {
         type: Sequelize.STRING,
-        allownull: false,
+        allownull: false
     },
 
     email: { 
         type: Sequelize.STRING,
         allownull: false,
-        unique: true,
+        unique: true
     }
 });
 
