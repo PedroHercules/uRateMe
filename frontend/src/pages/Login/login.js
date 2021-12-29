@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 
 import { Context } from '../../Context/authContext'
 
@@ -8,7 +8,15 @@ import imageReview from '../../assets/images/imagemReview.svg';
 export default function Login() {
 
     const { authenticated, handleLogin } = useContext(Context);
+    const [nickname, setNickName] = useState('');
+    const [password, setPassword] = useState('');
     console.log(authenticated)
+
+    function authenticate(e) {
+        e.preventDefault();
+        console.log(nickname);
+        handleLogin({nickname, password});
+    }
 
     return(
         <div id='login'>
@@ -18,14 +26,28 @@ export default function Login() {
                         <h1>Logo</h1>
                     </header>
                     
-                    <form>
+                    <form >
                         <div id="title-login">
                             <h1>Fazer Login</h1>
                             <h3>Preencha todos os campos abaixo para entrar.</h3>
                         </div>
-                        <input placeholder='E-mail' title="E-mail" name='email' type='email'></input>
-                        <input placeholder='Senha' title="Password"  name='password' type='password'></input>
-                        <button onClick={handleLogin} >Entrar</button>
+                        <input 
+                            placeholder='Nick Name' 
+                            title="nickname" 
+                            name='nickname' 
+                            type='text'
+                            onChange={e => setNickName(e.target.value)}
+                            value={nickname}
+                        ></input>
+                        <input 
+                            placeholder='Senha' 
+                            title="password"  
+                            name='password' 
+                            type='password'
+                            onChange={e => setPassword(e.target.value)}
+                            value={password}
+                        ></input>
+                        <button onClick={authenticate}>Entrar</button>
                         <h3>Não possui uma conta?</h3>
                         <a href="/register">clique aqui</a>
                     </form>
