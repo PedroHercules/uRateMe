@@ -13,6 +13,7 @@ const User = connection.define('users', {
     nickname: {
         type: Sequelize.STRING,
         allownull: false,
+        unique: true,
     },
 
     password: {
@@ -23,6 +24,7 @@ const User = connection.define('users', {
     email: { 
         type: Sequelize.STRING,
         allownull: false,
+        unique: true,
     }
 });
 
