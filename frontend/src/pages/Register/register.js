@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 
 import { Context } from '../../Context/authContext'
 
@@ -8,7 +8,17 @@ import imageReview from '../../assets/images/imagemReview.svg';
 export default function Register(){
 
     const { authenticated, handleRegister } = useContext(Context);
-    console.log(authenticated)
+    console.log(authenticated);
+
+    const [nickname, setNickName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function register(e) {
+        e.preventDefault();
+
+        handleRegister({email, nickname, password});
+    }
 
     return (
         <div id='register'>
@@ -23,10 +33,31 @@ export default function Register(){
                             <h1>Cadastrar</h1>
                             <h3>Preencha todos os campos abaixo para entrar.</h3>
                         </div>
-                        <input placeholder='Nome' title="Nome" name='nome' type='text'></input>
-                        <input placeholder='E-mail' title="E-mail" name='email' type='email'></input>
-                        <input placeholder='Senha' title="Password"  name='password' type='password'></input>
-                        <button onClick={handleRegister} >Cadastrar</button>
+                        <input 
+                            placeholder='Nick Name' 
+                            title="nickname" 
+                            name='nickname' 
+                            type='text'
+                            value={nickname}
+                            onChange={e => setNickName(e.target.value)}
+                        ></input>
+                        <input 
+                            placeholder='E-mail' 
+                            title="E-mail" 
+                            name='email' 
+                            type='email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        ></input>
+                        <input 
+                            placeholder='Senha' 
+                            title="Password"  
+                            name='password' 
+                            type='password'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        ></input>
+                        <button onClick={register} >Cadastrar</button>
                         <h3>Já possui uma conta?</h3>
                         <a href="/login">clique aqui</a>
                     </form>

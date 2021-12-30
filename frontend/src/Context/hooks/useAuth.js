@@ -5,49 +5,76 @@ import history from "../../history";
 
 export default function useAuth(){
     const [authenticated, setAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        /*const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
 
-        if(token){
+        if(token && user){
             api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
-            setAuthenticated(true)
-        }*/
+            api.defaults.headers.User = JSON.stringify(user);
+            setUser(user);
+            setAuthenticated(true);
+        }
 
         setLoading(false);
     }, [])
     
     async function handleLogin({nickname, password}) {
         console.log(nickname, password)
-        const {data: {token}} = await api.post('/auth/authenticate', {"nickname": nickname, "password": password});
+        await api.post('/auth/authenticate', {
+            "nickname": nickname, 
+            "password": password
+        }).then(response => {
+            //console.log(data);
 
-        //console.log(data);
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+            api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-        localStorage.setItem('token', JSON.stringify(token));
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        
-        setAuthenticated(true);
-        history.push('/home');
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            api.defaults.headers.Authorization = JSON.stringify(response.data.user);
+            
+            setAuthenticated(true);
+            setUser(response.data.user);
+            history.push('/');
+        }).catch(err => {
+            console.log(err.response.data)
+        })
+
     }
 
     function handleLogout() {
         setAuthenticated(false);
-        /*localStorage.removeItem('token');
-        api.defaults.headers.Authorization = undefined;*/
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        api.defaults.headers.Authorization = undefined;
 
         history.push('/login');
     }
 
-    function handleRegister() {
+    async function handleRegister({nickname,email,password}) {
         setAuthenticated(true);
-        /*const {data: {token}} = api.post('/register');
+        await api.post('/auth/register', {   
+            "nickname": nickname, 
+            "email": email,
+            "password": password
+        }).then(response => {
+            console.log(response.data);
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+            api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-        localStorage.setItem('token', JSON.stringify(token));
-        api.defaults.headers.Authorization = `Bearer ${token}`;*/
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            api.defaults.headers.Authorization = JSON.stringify(response.data.user);
 
-        history.push('/home');
+            setAuthenticated(true);
+            setUser(response.data.user);
+            history.push('/');
+        }).catch(err => {
+            console.log(err.response);
+        })
     }
 
-    return { loading, authenticated, handleLogin, handleLogout, handleRegister }
+    return { loading, authenticated, handleLogin, handleLogout, handleRegister, user }
 }

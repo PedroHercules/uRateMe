@@ -42,8 +42,7 @@
 }
 
 #login-body-left form input {
-    width: 100%;
-    max-width: 500px;
+    width: 60%;
     height: 10px;
     display: block;
     font-size: 1.4rem;
@@ -53,7 +52,7 @@
     border: 1px solid var(--color-line-in-white);
 }
 
-#login-body-left form input[name="email"] {
+#login-body-left form input[name="nickname"] {
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
 }
@@ -79,7 +78,7 @@
     font: 400 1.2rem Poppins;
 }
 #login-body-left form a {
-    color: #8257E5;
+    color: #24A5B2;
     font: 700 1.2rem Poppins;
 }
 

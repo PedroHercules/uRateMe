@@ -22,11 +22,26 @@ function CustoRoute({ isPrivate, ...rest}) {
 }
 
 export default function Routes() {
+
+    const {authenticated} = useContext(Context);
+
     return (
         <Switch>
-            <CustoRoute exact path='/login' component={Login}></CustoRoute>
-            <CustoRoute exact path='/register' component={Register}></CustoRoute>
-            <CustoRoute isPrivate exact path='/home' component={Home}></CustoRoute>
+            <CustoRoute 
+                exact 
+                path="/login" 
+                render={() => 
+                    authenticated ? <Redirect to="/" /> : <Login />
+                } 
+            />
+            <CustoRoute 
+                exact 
+                path="/register" 
+                render={() => 
+                    authenticated ? <Redirect to="/" /> : <Register />
+                }
+            />
+            <CustoRoute isPrivate exact path="/" component={Home} />
         </Switch>
     );
 }

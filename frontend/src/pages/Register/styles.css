@@ -49,7 +49,7 @@
 
 }
 
-#register-body-left form input[name="nome"] {
+#register-body-left form input[name="nickname"] {
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
 }
