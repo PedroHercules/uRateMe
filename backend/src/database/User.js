@@ -32,7 +32,7 @@ const User = connection.define('users', {
 User.beforeCreate(async (user) => {
     const hash = await bcrypt.hash(user.password, 10)
     user.password = hash;
-})
+});
 
 User.sync({force: false});
 module.exports = User;
