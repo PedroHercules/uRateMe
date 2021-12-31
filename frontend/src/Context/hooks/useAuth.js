@@ -24,11 +24,12 @@ export default function useAuth(){
     
     async function handleLogin({nickname, password}) {
         console.log(nickname, password)
+        let data;
         await api.post('/auth/authenticate', {
             "nickname": nickname, 
             "password": password
         }).then(response => {
-            //console.log(data);
+            //console.log(response);
 
             localStorage.setItem('token', JSON.stringify(response.data.token));
             api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
@@ -40,9 +41,8 @@ export default function useAuth(){
             setUser(response.data.user);
             history.push('/');
         }).catch(err => {
-            console.log(err.response.data)
-        })
-
+            throw err.response.data;
+        });
     }
 
     function handleLogout() {
@@ -55,13 +55,13 @@ export default function useAuth(){
     }
 
     async function handleRegister({nickname,email,password}) {
-        setAuthenticated(true);
-        await api.post('/auth/register', {   
+        return await api.post('/auth/register', {   
             "nickname": nickname, 
             "email": email,
             "password": password
         }).then(response => {
-            console.log(response.data);
+            setAuthenticated(true);
+            //console.log(response.data);
             localStorage.setItem('token', JSON.stringify(response.data.token));
             api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
@@ -72,8 +72,8 @@ export default function useAuth(){
             setUser(response.data.user);
             history.push('/');
         }).catch(err => {
-            console.log(err.response);
-        })
+            throw err.response.data;
+        });
     }
 
     return { loading, authenticated, handleLogin, handleLogout, handleRegister, user }

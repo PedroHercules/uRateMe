@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
                         token: generateToken({id: user.id})
                     });
                 }else{
-                    return res.send({error: 'Nome de usuário ou e-mail já existem'});
+                    return res.status(400).send({error: 'Nome de usuário ou e-mail já existem'});
                 }
         });
         
