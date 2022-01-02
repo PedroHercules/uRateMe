@@ -14,8 +14,13 @@
     background-color: #EAEAEA;
 }
 
+#login-body-left img{
+    width: 180px;
+    margin-left: 10px;
+}
+
 #login-body-left form {
-    height:94vh;
+    height:90vh;
     display: flex;
     flex-direction: column;
     align-items: center;

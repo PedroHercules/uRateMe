@@ -2,11 +2,13 @@ import React from 'react';
 
 import './styles.css';
 
+import Logo from '../../assets/images/logo.png'
+
 export default function PageHeader(){
     return (
         <header className="page-header">
             <div className="bar-left">
-                <h1>Logo</h1>
+                <img src={Logo}></img>
             </div>
             <div className="bar-right">
                 <a>Home</a>

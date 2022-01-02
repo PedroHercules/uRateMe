@@ -11,6 +11,11 @@
     width: 40vw;
 }
 
+.bar-left img {
+    width: 180px;
+    margin-left: 10px;
+}
+
 .bar-right {
     width: 60vw;
     display: flex;

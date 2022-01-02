@@ -7,6 +7,7 @@ import { Context } from '../../Context/authContext'
 
 import './styles.css'
 import imageReview from '../../assets/images/imagemReview.svg';
+import LogoBlack from '../../assets/images/logo_black.png'
 
 const schema = yup.object().shape({
     nickname: yup.string().required('Esse campo é obrigatório'),
@@ -37,7 +38,7 @@ export default function Login() {
             <div id='login-body'>
                 <div id='login-body-left'>
                     <header>
-                        <h1>Logo</h1>
+                        <img src={LogoBlack}></img>
                     </header>
                     
                     <form onSubmit={handleSubmit(authenticate)}>
