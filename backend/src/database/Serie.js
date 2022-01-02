@@ -1,7 +1,7 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
 
-const Content = connection.define('movies', {
+const Serie = connection.define('series', {
     id: {
         type: sequelize.INTEGER,
         allownull: false,
@@ -43,8 +43,7 @@ const Content = connection.define('movies', {
 
     nSeasons: {
         type: sequelize.INTEGER,
-        allownull: false,
-        defaultValue: 0
+        allownull: false
     },
 
     nComments: {
@@ -54,5 +53,5 @@ const Content = connection.define('movies', {
     }
 });
 
-Content.sync({force: false});
-module.exports = Content;
+Serie.sync({force: false});
+module.exports = Serie;

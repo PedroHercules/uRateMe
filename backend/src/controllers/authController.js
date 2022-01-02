@@ -14,9 +14,7 @@ function generateToken(params = {}) {
 }
 
 router.post('/register', async (req, res) => {
-    /* let nickname = req.body.nickname;
-    let password = req.body.password;
-    let email = req.body.email; */
+
     try{
         let nickname = req.body.nickname;
         let email = req.body.email;

@@ -11,4 +11,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./controllers/authController')(app);
 require('./controllers/projectController')(app);
 require('./controllers/movieController')(app);
+require('./controllers/seriesController')(app);
 app.listen(3333);
