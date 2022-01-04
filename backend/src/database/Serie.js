@@ -1,13 +1,14 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
+const Rate = require('./Rate.js');
 
 const Serie = connection.define('series', {
+
     id: {
         type: sequelize.INTEGER,
-        allownull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        unique: true
+        allowNull: false,
+        unique: true,
+        primaryKey: true
     },
 
     title: {

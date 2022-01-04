@@ -1,5 +1,6 @@
 const express = require('express');
 const Movie = require('../database/Movie.js');
+const Rate = require('../database/Rate.js');
 const axios = require('axios');
 const router = express.Router();
 
@@ -23,8 +24,9 @@ router.post('/update', async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movies = await getMovies();
         movies.forEach(async movie => {
-            const { title, overview, vote_average, release_date, poster_path } = movie;
+            const { id, title, overview, vote_average, release_date, poster_path } = movie;
             const data = await Movie.create({
+                id: id,
                 title: title,
                 sinopse: overview,
                 date: release_date,
@@ -48,5 +50,18 @@ router.get('/show', async (req, res) => {
         return res.send({error: error});
     }
 });
+
+router.get('/show/:id', async (req, res) => {
+    let id = req.params.id;
+    let rates = "";
+    console.log(id);
+    await Movie.findByPk(id).then(async movie => {
+        if(movie != undefined) {
+            rates = await Rate.findAll({where: {contentId: id}});
+            return res.send({movie, rates});
+        }
+    });
+})
+
 
 module.exports = app => app.use('/movies', router);

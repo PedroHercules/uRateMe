@@ -3,6 +3,8 @@ const Serie = require('../database/Serie.js');
 const axios = require('axios');
 const router = express.Router();
 
+const Rate = require('../database/Rate.js');
+
 async function getSeries() {
     const api_key = 'b0b8e4ce54b50e319832fe88b0fbc4d3';
     const base_url = 'https://api.themoviedb.org/3/';
@@ -26,6 +28,7 @@ router.post('/update', async (req, res) => {
         series.forEach(async serie => {
             const { id, name, overview, vote_average, first_air_date, poster_path, number_of_seasons} = serie;
             const data = await Serie.create({
+                id: id,
                 title: name,
                 sinopse: overview,
                 date: first_air_date,
@@ -50,5 +53,19 @@ router.get('/show', async (req, res) => {
         return res.send({error: error});
     }
 });
+
+
+router.get('/show/:id', async (req, res) => {
+    let id = req.params.id;
+    let rates = "";
+    console.log(id);
+    await Serie.findByPk(id).then(async serie => {
+        if(serie != undefined) {
+            rates = await Rate.findAll({where: {contentId: id}});
+            return res.send({serie, rates});
+        }
+    });
+
+})
 
 module.exports = app => app.use('/series', router);
