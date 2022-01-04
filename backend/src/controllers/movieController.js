@@ -3,6 +3,8 @@ const Movie = require('../database/Movie.js');
 const Rate = require('../database/Rate.js');
 const axios = require('axios');
 const router = express.Router();
+const User = require('../database/User.js');
+
 
 async function getMovies() {
     const api_key = 'b0b8e4ce54b50e319832fe88b0fbc4d3';
@@ -57,7 +59,9 @@ router.get('/show/:id', async (req, res) => {
     console.log(id);
     await Movie.findByPk(id).then(async movie => {
         if(movie != undefined) {
-            rates = await Rate.findAll({where: {contentId: id}});
+            rates = await Rate.findAll(
+                {include: [{model: User}]},
+                {where: {contentId: id}});
             return res.send({movie, rates});
         }
     });

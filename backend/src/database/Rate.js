@@ -1,5 +1,6 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
+const User = require('../database/User.js');
 
 
 const Rate = connection.define('rates', {
@@ -30,6 +31,9 @@ const Rate = connection.define('rates', {
     }
 
 });
+
+User.hasMany(Rate);
+Rate.belongsTo(User);
 
 Rate.sync({force: false});
 module.exports = Rate;

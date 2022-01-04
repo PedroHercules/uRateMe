@@ -8,11 +8,13 @@ router.post('/send/:id', async (req, res) => {
     try {
         
         const id = req.params.id;
+        let userId = req.body.user;
         
         const rate = await Rate.create({
             score: req.body.score,
             comment: req.body.comment,
-            contentId: id
+            contentId: id,
+            userId: userId
         });
 
         return res.send({rate});
