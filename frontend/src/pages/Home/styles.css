@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.home-main{
+    width: 100%;
+}
+
+#home-main-top{
+    display: flex;
+    justify-content: space-around;
+    
+    margin: 20px 0px;
+}
+
+.home-main span{
+    width: 80vw;
+    text-align: center; 
+    border-bottom: 2px solid #C7BDE4; 
+    line-height: 0.1em;
+    margin: 10px 0 15px;
+}
+
+.home-main h3 {
+    font: 700 1.0rem Poppins;
+}
+.home-main a {
+    font: 700 0.8rem Poppins;
+    color: #24A5B2;
+}
+
+.home-main section {
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+}
+
+.home-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 20px 0px;
+    padding: 10px 0px;
+    background-color: #24A5B2;
+}

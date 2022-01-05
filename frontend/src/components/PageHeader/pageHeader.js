@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+
+import { Context } from "../../Context/authContext";
 
 import './styles.css';
 
-import Logo from '../../assets/images/logo.png'
+import Logo from '../../assets/images/logo.png';
+import Seta from '../../assets/images/seta_baixo.png';
 
 export default function PageHeader(){
+    const { handleLogout, user } = useContext(Context);
+
     return (
         <header className="page-header">
             <div className="bar-left">
@@ -20,10 +25,15 @@ export default function PageHeader(){
                     <input type="search" placeholder="Procurar"></input>
                 </div>
                 <div className="bar-icon-user">
-                    <p>M</p>
-                    <span className="icon">^</span>
+                    <div>
+                        <p>{user.nickname[0].toUpperCase()}</p>
+                    </div>
+                    <div>
+                        <img src={Seta} id="header-icone"/>
+                    </div>
                 </div>
             </div>
+            <button onClick={handleLogout}>Sair</button>
         </header>
     );
 }

@@ -1,0 +1,33 @@
+.card {
+    width: 260px;
+    height: 320px;
+    background-color: red;
+    margin: 0px 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.card-body {
+    display: none;
+    padding: 10px;
+
+    background-color: #24A5B2;
+    border-radius: 0px 0px 10px 10px;
+    color: #fff;
+}
+
+.card-body h3{
+    font: 700 1.0rem Poppins;
+}
+
+.card-body h4{
+    font: 400 0.8rem Poppins;
+}
+
+.card:hover .card-body {
+    display: block;
+}

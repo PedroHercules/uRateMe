@@ -15,7 +15,7 @@ export default function useAuth(){
         if(token && user){
             api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
             api.defaults.headers.User = JSON.stringify(user);
-            setUser(user);
+            setUser(JSON.parse(user));
             setAuthenticated(true);
         }
 
@@ -23,7 +23,7 @@ export default function useAuth(){
     }, [])
     
     async function handleLogin({nickname, password}) {
-        console.log(nickname, password)
+        //console.log(nickname, password)
         let data;
         await api.post('/auth/authenticate', {
             "nickname": nickname, 
@@ -36,9 +36,9 @@ export default function useAuth(){
 
             localStorage.setItem('user', JSON.stringify(response.data.user));
             api.defaults.headers.Authorization = JSON.stringify(response.data.user);
-            
-            setAuthenticated(true);
+
             setUser(response.data.user);
+            setAuthenticated(true);
             history.push('/');
         }).catch(err => {
             throw err.response.data;
@@ -60,16 +60,16 @@ export default function useAuth(){
             "email": email,
             "password": password
         }).then(response => {
-            setAuthenticated(true);
             //console.log(response.data);
+
             localStorage.setItem('token', JSON.stringify(response.data.token));
             api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
             localStorage.setItem('user', JSON.stringify(response.data.user));
             api.defaults.headers.Authorization = JSON.stringify(response.data.user);
 
-            setAuthenticated(true);
             setUser(response.data.user);
+            setAuthenticated(true);
             history.push('/');
         }).catch(err => {
             throw err.response.data;
