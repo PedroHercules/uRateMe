@@ -1,7 +1,6 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
-const User = require('../database/User.js');
-
+const User = require("./User.js");
 
 const Rate = connection.define('rates', {
 
@@ -24,10 +23,6 @@ const Rate = connection.define('rates', {
     contentId: {
         type: sequelize.INTEGER,
         allowNull: false
-    },
-
-    contentType: {
-        type: sequelize.STRING,
     }
 
 });

@@ -54,5 +54,6 @@ const Serie = connection.define('series', {
     }
 });
 
+
 Serie.sync({force: false});
 module.exports = Serie;

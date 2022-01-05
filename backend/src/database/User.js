@@ -26,5 +26,6 @@ User.beforeCreate(async (user) => {
     user.password = hash;
 });
 
+
 User.sync({force: false});
 module.exports = User;

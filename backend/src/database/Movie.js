@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 const connection = require('./database.js');
 const Rate = require('./Rate.js');
 
+
 const Movie = connection.define('movies', {
 
     id: {
@@ -48,6 +49,7 @@ const Movie = connection.define('movies', {
         defaultValue: 0
     }
 });
+
 
 Movie.sync({force: false});
 module.exports = Movie;
