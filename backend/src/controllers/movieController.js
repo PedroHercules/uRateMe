@@ -54,13 +54,20 @@ router.get('/show', async (req, res) => {
 });
 
 router.get('/show/:id', async (req, res) => {
-    let id = req.params.id;
-    console.log(id);
+    const id = req.params.id;
+   
     await Movie.findByPk(id).then(async movie => {
         if(movie != undefined) {
             const rates = await Rate.findAll(
-                {include: [{model: User, attributes: {exclude: ['password']}}]},
-                {where: {contentId: id}}
+                {   
+                    where: {contentId: id},
+                    include: [
+                        {
+                            model: User, 
+                            attributes: ["nickname"]
+                        }
+                    ]
+                }
             );
             return res.send({movie, rates});
         }

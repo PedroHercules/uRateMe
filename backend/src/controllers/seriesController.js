@@ -2,6 +2,7 @@ const express = require('express');
 const Serie = require('../database/Serie.js');
 const axios = require('axios');
 const router = express.Router();
+const User = require('../database/User.js');
 
 const Rate = require('../database/Rate.js');
 
@@ -56,12 +57,21 @@ router.get('/show', async (req, res) => {
 
 
 router.get('/show/:id', async (req, res) => {
-    let id = req.params.id;
-    let rates = "";
-    console.log(id);
+    const id = req.params.id;
+   
     await Serie.findByPk(id).then(async serie => {
         if(serie != undefined) {
-            rates = await Rate.findAll({where: {contentId: id}});
+            const rates = await Rate.findAll(
+                {   
+                    where: {contentId: id},
+                    include: [
+                        {
+                            model: User, 
+                            attributes: ["nickname"]
+                        }
+                    ]
+                }
+            );
             return res.send({serie, rates});
         }
     });
