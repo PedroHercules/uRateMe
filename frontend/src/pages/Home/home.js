@@ -18,7 +18,7 @@ export default function Home() {
     const { authenticated, user } = useContext(Context)
     const [movies, setMovies] = useState([]);
 
-    console.log(authenticated, user);
+    console.log(movies);
 
     useEffect(() => {
         api.get('/movies/show').then(response => {
@@ -39,7 +39,15 @@ export default function Home() {
                 <section>
                     {movies.map((movie, index) => (
                         <div key={index}>
-                            <Card  title={movie.title} photo={movie.photo} type="Ação/Ficção"/>
+                            <Card  
+                                id={movie.id} 
+                                title={movie.title} 
+                                photo={movie.photo} 
+                                sinopse={movie.sinopse} 
+                                date={movie.date} 
+                                rateUsers={movie.rateUsers} 
+                                nComments={movie.nComments} 
+                                type="Ação/Ficção"/>
                         </div>
                     ))}
                 </section>

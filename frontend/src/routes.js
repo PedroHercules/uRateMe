@@ -6,6 +6,7 @@ import { Context } from "./Context/authContext";
 import Login from './pages/Login/login';
 import Home from './pages/Home/home';
 import Register from './pages/Register/register';
+import Details from './pages/Details/details';
 
 function CustoRoute({ isPrivate, ...rest}) {
     const {loading, authenticated} = useContext(Context);
@@ -42,6 +43,7 @@ export default function Routes() {
                 }
             />
             <CustoRoute isPrivate exact path="/" component={Home} />
+            <CustoRoute isPrivate exact path="/details" component={Details} />
         </Switch>
     );
 }

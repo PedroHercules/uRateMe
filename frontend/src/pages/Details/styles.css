@@ -1,0 +1,244 @@
+.img-fundo {
+    width: 100%;
+    height: 450px;
+}
+
+.img-fundo .opa {
+    width: 100%;
+    height: 100%;
+    background-color: #24A5B2;
+    opacity: 50%;
+}
+
+.details-info {
+    display: flex;
+    margin: -16.2rem 40px;
+    position: absolute;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.img-left {
+    width: 350px;
+    height: 480px;
+    border-radius: 10px;
+}
+
+.section-right {
+    width: 70%;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.section-right h1 {
+    width: 40%;
+    font: 700 2rem Poppins;
+}
+
+.section-right span {
+    font: 400 1rem Poppins;
+}
+.section-right h3 {
+    margin-top: 50px;
+    font: 700 1.2rem Poppins;
+}
+.section-right p {
+    margin-top: 10px;
+    font: 400 1rem Poppins;
+}
+
+.details-info-footer {
+    padding-top: 15rem;
+    width: 100%;
+    height: 55vh;
+    background-color: #24A5B2;
+    padding-left: 50px;
+    color: #fff;
+    display: flex;
+}
+
+.details-score {
+    width: 100px;
+    height: 90px;
+    text-align: center;
+    background-color: #FE993B;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-score h4 {
+    font: 700 0.8rem Poppins;
+}
+
+.details-score span {
+    font: 700 1.8rem Poppins;
+}
+
+.details-info-footer div {
+    display: flex;
+}
+
+.details-info-footer-right {
+    width: 100%;
+    height: 90px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    border: 2px solid #707070;
+    font: 700 0.8rem Poppins;
+}
+
+.details-info-footer-right h3{
+    margin-right: 20px;
+}
+
+.details-comments {
+    margin-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.comment {
+    display: flex;
+}
+
+.comment-left {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #24A5B2;
+
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.comment form {
+    width: 80vw;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10px;
+}
+
+.input-range {
+    -webkit-appearance: none;
+    background: #24A5B2;
+    height: 10px;
+    border-radius: 9px;   
+}
+
+.input-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+
+    background: #24A5B2;
+    cursor: pointer;
+}
+
+.input-range::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+
+    background: #24A5B2;
+    cursor: pointer;
+}
+
+.input-range-label {
+    padding-left: 10px;
+}
+
+.input-comment {
+    height: 30px;
+    border: 0;
+    outline: 0;
+    padding-bottom: 4px;
+    color: rgb(78, 77, 77);
+    font: 700 0.8rem Poppins;
+    border-bottom: 2px solid #CCC6BA;
+}
+
+.textarea-button {
+    width: 100%;
+    display: flex;
+}
+
+.textarea-button textarea {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.textarea-button span {
+    width: 80px;
+    text-align: center;
+    padding-top: 8px;
+    font: 400 0.8rem Poppins;
+}
+
+.textarea-button button {
+    width: 100px;
+    height: 30px;
+    background-color: #24A5B2;
+    color: #fff;
+    font-size: 1.0rem;
+    border: none;
+    border-radius: 0.4rem;
+    outline: 0;
+}
+
+.details-comments section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.comment-left {
+    margin-right: 10px;
+}
+
+.comment-public {
+    width: 80vw;
+    margin-left: 10px;
+    border: 2px solid #CCC6BA;
+    border-radius: 10px;
+}
+
+.comment-public-header {
+    display: flex;
+    font: 700 0.8rem Poppins;
+    margin: 8px 10px;
+}
+
+.comment-public-header h4 {
+    color: #24A5B2;
+    margin-right: 10px;
+}
+
+.comment-public-header span {
+    color: #9b9994;
+    padding-right: 10px;
+}
+
+.comment-public-header h5 {
+    color: #9b9994;
+}
+
+.comment-public-body {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font: 400 0.8rem Poppins;
+}
