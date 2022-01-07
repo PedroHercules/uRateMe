@@ -1,0 +1,100 @@
+.comment {
+    display: flex;
+}
+
+.comment-left {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #24A5B2;
+
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font: 700 1.2rem Poppins;
+}
+
+.comment form {
+    width: 80vw;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10px;
+}
+
+.input-range {
+    -webkit-appearance: none;
+    background: #24A5B2;
+    height: 10px;
+    border-radius: 9px;   
+}
+
+.input-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+
+    background: #24A5B2;
+    cursor: pointer;
+}
+
+.input-range::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+
+    background: #24A5B2;
+    cursor: pointer;
+}
+
+.input-range-label {
+    padding-left: 10px;
+}
+
+.input-comment {
+    height: 30px;
+    border: 0;
+    outline: 0;
+    padding-bottom: 4px;
+    color: rgb(78, 77, 77);
+    font: 700 0.8rem Poppins;
+    border-bottom: 2px solid #CCC6BA;
+}
+
+.textarea-button {
+    width: 100%;
+    display: flex;
+}
+.textarea-button div{
+    display: flex;
+    flex-direction: row;
+}
+
+.textarea-button textarea {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.textarea-button span {
+    width: 80px;
+    text-align: center;
+    padding-top: 8px;
+    font: 400 0.8rem Poppins;
+}
+
+.textarea-button button {
+    width: 100px;
+    height: 30px;
+    background-color: #24A5B2;
+    color: #fff;
+    font-size: 1.0rem;
+    border: none;
+    border-radius: 0.4rem;
+    outline: 0;
+    margin-right: 10px;
+}

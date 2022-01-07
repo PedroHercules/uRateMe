@@ -1,0 +1,21 @@
+.details-comments section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.comment-left {
+    margin-right: 10px;
+}
+
+.comment-public {
+    width: 80vw;
+    margin-left: 10px;
+    border: 2px solid #CCC6BA;
+    border-radius: 10px;
+}
+
+.comment-public-header {
+    display: flex;
+    font: 700 0.8rem Poppins;
+    margin: 8px 10px;
+}

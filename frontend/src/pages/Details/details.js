@@ -1,5 +1,4 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { useForm } from 'react-hook-form';
 import api from '../../api';
 
 import './styles.css';
@@ -7,35 +6,29 @@ import './styles.css';
 import { Context } from '../../Context/authContext'
 
 import PageHeader from '../../components/PageHeader/pageHeader';
-import e from 'cors';
+import FormRate from '../../components/FormRate/formRate';
+import SectionComment from '../../components/SectionComment/sectionComment';
+
 
 export default function Details(props) {
     const {user} = useContext(Context);
+    
 
-    const [score, setScore] = useState(1);
-    const [comment, setComment] = useState('');
     const [rates, setRates] = useState([]);
-    console.log(rates[0])
+    const [myrate, setMyrate] = useState({});
 
-    const {register, handleSubmit, setError, clearErrors, formState: {errors} } = useForm();
-
-    async function rate(data,e) {
-        e.preventDefault();
-
-        await api.post(`rate/send/${props.location.state.id}`, {
-            "score": data.inputrange,
-            "comment": data.inputcomment,
-            "contentId": props.location.state.id,
-            "user": user.id
-        }).then(response => {
-            console.log(response);
-        })
-        
-    }
-
-    useEffect( async () => {
-        await api.get(`movies/show/${props.location.state.id}`).then(response => {
-            setRates(response.data.rates);
+    useEffect(() => {
+        api.get(`movies/show/${props.location.state.id}`).then(response => {
+            console.log(response.data)
+            let vetLates = response.data.rates;
+            for(var i = 0; i < vetLates.length; i++){
+                if(vetLates[i].userId === user.id){
+                    setMyrate(vetLates[i]);
+                    vetLates.splice(i, 1);
+                }
+            }
+            console.log(myrate)
+            setRates(vetLates);
         })
     }, []);
 
@@ -67,61 +60,45 @@ export default function Details(props) {
                 </div>
             </main>
             <div className="details-comments">
-                <div className="comment">
-                    <div className="comment-left">
-                        <p>{user.nickname[0].toUpperCase()}</p>
-                    </div>
-                    <form onSubmit={handleSubmit(rate)}>
-                        <div>
-                            <input 
-                                className="input-range" 
-                                name='inputrange' 
-                                type="range" 
-                                min="1" 
-                                max="10" 
-                                step="1" 
-                                {...register('inputrange')}
-                                onChange={(e) =>{setScore(e.target.value)}} 
-                                value={score} 
-                            />
-                            <label className="input-range-label">{score}</label>
-                        </div>
-                        <div className="textarea-button">
-                            <textarea 
-                                className="input-comment" 
-                                name='inputcomment' 
-                                type="text" 
-                                placeholder="Adicionar um comentário público"
-                                maxLength="300"
-                                {...register('inputcomment')}
-                                onChange={(e) =>{setComment(e.target.value)}} 
-                                value={comment}
-                            />
-                            <span>{comment.length} / 300 </span>
-                            <button className="" type="submit">Enviar</button>
-                        </div>
-                    </form>
-                </div>
+                {Object.values(myrate).length === 0 
+                    ? (
+                        <FormRate 
+                            userId={user.id}
+                            contentId={props.location.state.id} 
+                            nickname={user.nickname}
+                            upScore='1'
+                            upComment=''
+                            isUpdate={false}
+                        />    
+                    ) : (
+                        <SectionComment 
+                            userId={user.id}
+                            ratesId={myrate.id} 
+                            contentId={myrate.contentId} 
+                            ratesUserNickname={myrate.user.nickname} 
+                            score={myrate.score} 
+                            date={myrate.date} 
+                            comment={myrate.comment}
+                            isMyrate={true}
+                        />
+                    )}
                 
                 {rates.length === 0 
-                    ? <h3>Não há comentários {rates[0]}</h3> 
+                    ? <h3>Não há comentários</h3> 
                     : (
-                        rates.map(rates => (
-                            <section key={rates.id}> 
-                                <div className="comment-left">
-                                    <p>{rates.user.nickname[0]}</p>
-                                </div>
-                                <div className="comment-public">
-                                    <div className="comment-public-header">
-                                        <h4>{rates.user.nickname}</h4>
-                                        <span>Nota: {rates.score}</span>
-                                        <h5>{rates.date}</h5>
-                                    </div>
-                                    <div className="comment-public-body">
-                                        <p>{rates.comment}</p>
-                                    </div>
-                                </div>
-                            </section>
+                        rates.map(rate => (
+                            <div key={rate.id}>
+                                <SectionComment 
+                                    userId={rate.userId} 
+                                    contentId={rate.contentId} 
+                                    ratesId={rate.id} 
+                                    ratesUserNickname={rate.user.nickname} 
+                                    score={rate.score} 
+                                    date={rate.date} 
+                                    comment={rate.comment}
+                                    isMyrate={false}
+                                />
+                            </div>
                         ))
                 )}
                 

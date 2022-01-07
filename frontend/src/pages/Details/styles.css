@@ -106,121 +106,20 @@
     flex-direction: column;
 }
 
-.comment {
+#comment-myrate {
     display: flex;
-}
-
-.comment-left {
-    width: 46px;
-    height: 46px;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: #24A5B2;
-
-    color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
 }
 
-.comment form {
-    width: 80vw;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left: 10px;
-}
-
-.input-range {
-    -webkit-appearance: none;
-    background: #24A5B2;
-    height: 10px;
-    border-radius: 9px;   
-}
-
-.input-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%; 
-
-    background: #24A5B2;
-    cursor: pointer;
-}
-
-.input-range::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%; 
-
-    background: #24A5B2;
-    cursor: pointer;
-}
-
-.input-range-label {
-    padding-left: 10px;
-}
-
-.input-comment {
-    height: 30px;
-    border: 0;
-    outline: 0;
-    padding-bottom: 4px;
-    color: rgb(78, 77, 77);
-    font: 700 0.8rem Poppins;
-    border-bottom: 2px solid #CCC6BA;
-}
-
-.textarea-button {
-    width: 100%;
-    display: flex;
-}
-
-.textarea-button textarea {
-    width: 100%;
+#comment-myrate span img {
     margin-right: 10px;
+    cursor: pointer;
 }
 
-.textarea-button span {
-    width: 80px;
-    text-align: center;
-    padding-top: 8px;
-    font: 400 0.8rem Poppins;
-}
-
-.textarea-button button {
-    width: 100px;
-    height: 30px;
-    background-color: #24A5B2;
-    color: #fff;
-    font-size: 1.0rem;
-    border: none;
-    border-radius: 0.4rem;
-    outline: 0;
-}
-
-.details-comments section {
+.comment-public-header div {
     display: flex;
-    margin-top: 20px;
-}
-
-.comment-left {
-    margin-right: 10px;
-}
-
-.comment-public {
-    width: 80vw;
-    margin-left: 10px;
-    border: 2px solid #CCC6BA;
-    border-radius: 10px;
-}
-
-.comment-public-header {
-    display: flex;
-    font: 700 0.8rem Poppins;
-    margin: 8px 10px;
+    align-items: center;
 }
 
 .comment-public-header h4 {
