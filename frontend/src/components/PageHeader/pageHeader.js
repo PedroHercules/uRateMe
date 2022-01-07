@@ -13,14 +13,14 @@ export default function PageHeader(){
     return (
         <header className="page-header">
             <div className="bar-left">
-                <img src={Logo}></img>
+                <img src={Logo} alt="logo" ></img>
             </div>
             <div className="bar-right">
-                <a>Home</a>
-                <a>Filmes</a>
-                <a>Séries</a>
-                <a>Sobre</a>
-                <a>Ajuda</a>
+                <a href='/'>Home</a>
+                <a href='/filmes'>Filmes</a>
+                <a href='/series'>Séries</a>
+                <a href='/'>Sobre</a>
+                <a href='/'>Ajuda</a>
                 <div className="bar-search">
                     <input type="search" placeholder="Procurar"></input>
                 </div>
@@ -29,7 +29,7 @@ export default function PageHeader(){
                         <p>{user.nickname[0].toUpperCase()}</p>
                     </div>
                     <div>
-                        <img src={Seta} id="header-icone"/>
+                        <img src={Seta} id="header-icone" alt="seta para baixo"/>
                     </div>
                 </div>
             </div>

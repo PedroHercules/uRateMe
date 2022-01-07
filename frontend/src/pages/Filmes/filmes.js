@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from "react";
-import api from "../../api";
+import React, {useEffect, useState} from 'react';
+import api from '../../api';
 
 import './styles.css';
 
-import PageHeader from "../../components/PageHeader/pageHeader";
-import SlideShow from "../../components/SlideShow/slideShow";
+import PageHeader from '../../components/PageHeader/pageHeader';
 import Card from '../../components/CardMoviesSeries/cardMoviesSeries';
 import Footer from '../../components/Footer/footer';
 
-export default function Home() {
-    const [movies, setMovies] = useState([]);
+export default function Filmes() {
 
-    console.log(movies);
+    const [movies, setMovies] = useState([]);
 
     useEffect(() => {
         api.get('/movies/show').then(response => {
@@ -20,14 +18,13 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="home-body">
+        <div className="filmes-container">
             <PageHeader />
-            <SlideShow />
-            <main className="home-main">
-                <div id="home-main-top">
-                    <h3>Top Filmes</h3>
-                    <span id='span-sep'></span>
-                    <a href="/filmes">Mostrar tudo</a>
+            <main className="filmes-main">
+                <div id="filmes-main-top">
+                    <h3>Filmes</h3>
+                    <span id='line'></span>
+                    <a href="/">Adicionar Filmes</a>
                 </div>
                 <section>
                     {movies.map((movie, index) => (

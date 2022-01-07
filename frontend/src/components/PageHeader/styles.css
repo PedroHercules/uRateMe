@@ -30,6 +30,7 @@
 .bar-right a {
     color: #fff;
     font: 700 1.0rem Poppins;
+    text-decoration: none;
 }
 
 .bar-search input {

@@ -36,13 +36,3 @@
     display: flex;
     overflow: scroll;
 }
-
-.home-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 20px 0px;
-    padding: 10px 0px;
-    background-color: #24A5B2;
-}

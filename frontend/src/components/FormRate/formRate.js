@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import api from '../../api';
 
 import './styles.css';
-import { useForm } from 'react-hook-form';
 import history from '../../history';
 
 export default function FormRate({ rateId, contentId, userId, nickname, upScore, upComment, isUpdate }) {
-    const {register, handleSubmit, setError, clearErrors, formState: {errors} } = useForm();
 
     const [score, setScore] = useState(1);
     const [comment, setComment] = useState('');

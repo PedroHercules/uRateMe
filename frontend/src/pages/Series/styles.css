@@ -1,0 +1,39 @@
+.series-container {
+    width: 100%;
+}
+
+.series-main {
+    width: 100%;
+}
+
+#series-main-top {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 30px 10px;
+}
+
+.series-main span{
+        width: 80vw;
+        text-align: center; 
+        border-bottom: 2px solid #C7BDE4; 
+        line-height: 0.1em;
+        margin: 10px 0 15px;
+}
+
+.series-main h3 {
+    font: 700 1.0rem Poppins;
+}
+
+.series-main a {
+    font: 700 0.9rem Poppins;
+    color: #24A5B2;
+}
+
+.series-container section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    margin: 0 10px;
+}
