@@ -38,6 +38,26 @@ router.post('/update/:id', async (req, res) => {
     } catch (error) {
         return res.status(400).send({error: error});
     }
+});
+
+router.post('/delete', async (req, res) => {
+    try{
+        const id = req.body.id;
+        if(id != undefined) {
+            if(!isNaN(id)) {
+                Rate.destroy({
+                    where: {id: id}
+                }).then(() => {
+                    return res.send('Avaliação deletada com sucesso');
+                });
+            }
+        }else{
+            return res.send('Id vazio')
+        }
+    }catch(err){
+        return res.send({error: err});
+    }
+    
 })
 
 module.exports = app => app.use("/rate", router);
