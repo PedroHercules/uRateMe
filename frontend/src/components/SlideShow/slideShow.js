@@ -20,7 +20,7 @@ export default function SlideShow() {
             <Slide>
                 {image.map((filmes,index) => (
                     <div className='slideBody' key={index}>
-                        <img src={filmes.photo} />
+                        <img src={filmes.backdrop_path} />
                         <div>
                             <span id="slide-type">Ação/ficção</span>
                             <h1>{filmes.title}</h1>

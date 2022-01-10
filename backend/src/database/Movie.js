@@ -43,6 +43,11 @@ const Movie = connection.define('movies', {
         allownull: false
     },
 
+    backdrop_path: {
+        type: sequelize.STRING,
+        allownull: false
+    },
+
     nComments: {
         type: sequelize.INTEGER,
         allownull: false,

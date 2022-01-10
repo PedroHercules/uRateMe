@@ -4,8 +4,8 @@ import history from '../../history';
 
 import './styles.css';
 
-export default function CardMoviesSeries({ id, title, photo, sinopse, date, rateUsers, nComments, type}) {
-
+export default function CardMoviesSeries({ id, title, photo, backdrop_path, sinopse, date, rateUsers, nComments, type}) {
+    console.log(backdrop_path)
     function handleDetail(){
         history.push({
             pathname: '/details',
@@ -13,6 +13,7 @@ export default function CardMoviesSeries({ id, title, photo, sinopse, date, rate
                 id: id,
                 title: title,
                 photo: photo,
+                backdrop_path: backdrop_path,
                 sinopse: sinopse, 
                 date: date, 
                 rateUsers: rateUsers, 

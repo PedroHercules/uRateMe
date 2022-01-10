@@ -38,7 +38,7 @@ export default function Details(props) {
         <div>
             <PageHeader />
             <main>
-                <div className="img-fundo" style={{'background': `url(${props.location.state.photo})`, 'backgroundSize': '100% 100%'}}>
+                <div className="img-fundo" style={{'background': `url(${props.location.state.backdrop_path})`, 'backgroundSize': '100% 100%'}}>
                     <div className="opa"></div>
                 </div>
                 <section className="details-info">

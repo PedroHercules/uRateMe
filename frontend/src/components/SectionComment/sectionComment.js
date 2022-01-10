@@ -98,6 +98,7 @@ export default function SectionComment({ userId, contentId, ratesId, ratesUserNi
                         upScore={score}
                         upComment={comment}
                         isUpdate={true}
+                        setIsUpdated={setIsUpdated}
                     />  
                 )}
             </div>

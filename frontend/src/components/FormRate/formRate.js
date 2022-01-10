@@ -4,7 +4,7 @@ import api from '../../api';
 import './styles.css';
 import history from '../../history';
 
-export default function FormRate({ rateId, contentId, userId, nickname, upScore, upComment, isUpdate }) {
+export default function FormRate({ rateId, contentId, userId, nickname, upScore, upComment, isUpdate, setIsUpdated }) {
 
     const [score, setScore] = useState(1);
     const [comment, setComment] = useState('');
@@ -38,6 +38,10 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
             console.log(response);
             history.go(0);
         })
+    }
+
+    function cancel() {
+        setIsUpdated(false)
     }
 
     useEffect(() => {
@@ -83,7 +87,7 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
                     ): (
                         <div>
                             <button className="" onClick={updateRate}>Enviar</button>
-                            <button className="">Cancelrar</button>
+                            <button className="" onClick={cancel}>Cancelrar</button>
                         </div>
                     )}
                     

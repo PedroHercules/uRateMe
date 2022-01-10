@@ -26,14 +26,15 @@ router.post('/update', async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movies = await getMovies();
         movies.forEach(async movie => {
-            const { id, title, overview, vote_average, release_date, poster_path } = movie;
+            const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
             const data = await Movie.create({
                 id: id,
                 title: title,
                 sinopse: overview,
                 date: release_date,
                 rateApi: vote_average,
-                photo: poster + poster_path
+                photo: poster + poster_path,
+                backdrop_path: poster + backdrop_path
             });
         });
 
