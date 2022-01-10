@@ -41,7 +41,10 @@ const Serie = connection.define('series', {
         type: sequelize.STRING,
         allownull: false
     },
-
+    backdrop_path: {
+        type: sequelize.STRING,
+        allownull: false
+    },
     nSeasons: {
         type: sequelize.INTEGER,
         allownull: false

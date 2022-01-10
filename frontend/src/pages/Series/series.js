@@ -33,6 +33,7 @@ export default function Series() {
                                 id={movie.id} 
                                 title={movie.title} 
                                 photo={movie.photo} 
+                                backdrop_path={movie.backdrop_path}
                                 sinopse={movie.sinopse} 
                                 date={movie.date} 
                                 rateUsers={movie.rateUsers} 

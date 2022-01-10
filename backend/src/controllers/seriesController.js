@@ -27,7 +27,7 @@ router.post('/update', async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const series = await getSeries();
         series.forEach(async serie => {
-            const { id, name, overview, vote_average, first_air_date, poster_path, number_of_seasons} = serie;
+            const { id, name, overview, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
             const data = await Serie.create({
                 id: id,
                 title: name,
@@ -35,6 +35,7 @@ router.post('/update', async (req, res) => {
                 date: first_air_date,
                 rateApi: vote_average,
                 photo: poster + poster_path,
+                backdrop_path: poster + backdrop_path,
                 nSeasons: number_of_seasons
             });
         });
