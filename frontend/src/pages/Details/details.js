@@ -13,9 +13,11 @@ import SectionComment from '../../components/SectionComment/sectionComment';
 export default function Details(props) {
     const {user} = useContext(Context);
     
-
     const [rates, setRates] = useState([]);
     const [myrate, setMyrate] = useState({});
+    const [isShowing, setIsShowing] = useState(false);
+
+    
 
     useEffect(() => {
         api.get(`movies/show/${props.location.state.id}`).then(response => {
@@ -80,6 +82,7 @@ export default function Details(props) {
                             date={myrate.date} 
                             comment={myrate.comment}
                             isMyrate={true}
+
                         />
                     )}
                 
@@ -103,6 +106,7 @@ export default function Details(props) {
                 )}
                 
             </div>
+            
         </div>
     );
 }

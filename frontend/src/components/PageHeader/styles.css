@@ -74,3 +74,42 @@
     width: 15px;
     height: 15px;
 }
+
+.dropDownMenu {
+    width: 100px;
+    height: 70px;
+    position: absolute;
+    top: 68.8px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 100;
+    background-color: #155F66;
+}
+
+.dropDownMenu div {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.dropDownMenu a {
+    color: #fff;
+    font: 700 1.0rem Poppins;
+    margin-left: 10px;
+}
+
+.dropDownMenu span {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    width: 19px;
+    height: 19px;
+    background-color: #155F66;
+    color: #155F66;
+    transform: rotate(45deg);
+    z-index: -100;
+}
