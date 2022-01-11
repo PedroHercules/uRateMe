@@ -75,11 +75,6 @@ router.get('/show/:id', async (req, res) => {
                 movie.nComments += 1;
             });
 
-            Movie.update({
-                nComments: movie.nComments
-            },
-            {where: {id: id}}
-            )
             return res.send({movie, rates});
         }
     });
