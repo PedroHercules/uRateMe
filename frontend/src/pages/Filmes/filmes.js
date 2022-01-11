@@ -37,6 +37,7 @@ export default function Filmes() {
                                 sinopse={movie.sinopse} 
                                 date={movie.date} 
                                 rateUsers={movie.rateUsers} 
+                                rateApi={movie.rateApi}
                                 nComments={movie.nComments} 
                                 isMovie={true} 
                                 type="Ação/Ficção"/>
