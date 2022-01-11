@@ -71,8 +71,19 @@ router.get('/show/:id', async (req, res) => {
                             attributes: ["nickname"]
                         }
                     ]
+
                 }
             );
+
+            rates.forEach(function(){
+                serie.nComments += 1;
+            });
+
+            Serie.update({
+                nComments: serie.nComments
+            },
+            {where: {id: id}}
+            )
             return res.send({serie, rates});
         }
     });

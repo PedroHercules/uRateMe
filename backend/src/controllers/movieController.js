@@ -70,6 +70,16 @@ router.get('/show/:id', async (req, res) => {
                     ]
                 }
             );
+            
+            rates.forEach(function(){
+                movie.nComments += 1;
+            });
+
+            Movie.update({
+                nComments: movie.nComments
+            },
+            {where: {id: id}}
+            )
             return res.send({movie, rates});
         }
     });
