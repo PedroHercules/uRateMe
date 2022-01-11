@@ -47,9 +47,9 @@ export default function PageHeader(){
                     <img src={profile} width="19" height="19" alt='icone de perfil'/>
                     <a >Perfil</a>
                 </div>
-                <div>
+                <div onClick={handleLogout} >
                     <img src={logout} width="19" height="19" alt='icone de sair'/>
-                    <a onClick={handleLogout} >Sair</a>
+                    <a>Sair</a>
                 </div>
             </div>
         </header>

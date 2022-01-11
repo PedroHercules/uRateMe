@@ -11,8 +11,6 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
 
     async function rate(e) {
         e.preventDefault();
-
-        console.log(userId, contentId);
         
         await api.post(`rate/send/${contentId}`, {
             "score": score,

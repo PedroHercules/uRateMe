@@ -15,6 +15,7 @@ export default function Details(props) {
     
     const [rates, setRates] = useState([]);
     const [myrate, setMyrate] = useState({});
+    const [mediaScore, setMediaScore] = useState(0.0);
 
     
 
@@ -23,23 +24,43 @@ export default function Details(props) {
         if(props.location.state.isMovie === true) {
             api.get(`movies/show/${props.location.state.id}`).then(response => {
                 let vetLates = response.data.rates;
+                let sum = 0;
+                for(var i = 0; i < vetLates.length; i++){
+                    sum = (vetLates[i].score + sum);
+                }
                 for(var i = 0; i < vetLates.length; i++){
                     if(vetLates[i].userId === user.id){
                         setMyrate(vetLates[i]);
                         vetLates.splice(i, 1);
                     }
                 }
+
+                if(response.data.movie.nComments === 0){
+                    setMediaScore(0.0)
+                } else {
+                    setMediaScore((sum / response.data.movie.nComments).toFixed(1));
+                }
+                
                 console.log(myrate)
                 setRates(vetLates);
             });
         } else {
             api.get(`series/show/${props.location.state.id}`).then(response => {
                 let vetLates = response.data.rates;
+                let sum = 0;
+                for(var i = 0; i < vetLates.length; i++){
+                    sum = (vetLates[i].score + sum);
+                }
                 for(var i = 0; i < vetLates.length; i++){
                     if(vetLates[i].userId === user.id){
                         setMyrate(vetLates[i]);
                         vetLates.splice(i, 1);
                     }
+                }
+                if(response.data.serie.nComments === 0){
+                    setMediaScore(0.0)
+                } else {
+                    setMediaScore((sum / response.data.serie.nComments).toFixed(1));
                 }
                 console.log(myrate)
                 setRates(vetLates);
@@ -67,7 +88,7 @@ export default function Details(props) {
                 <div className='details-info-footer'>
                     <div className='details-score'>
                         <h4>Pontuação</h4>
-                        <span>5.0</span>
+                        <span>{mediaScore}</span>
                     </div>
                     <div className='details-info-footer-right'>
                         <h3>Genero: {props.location.state.type}</h3>
