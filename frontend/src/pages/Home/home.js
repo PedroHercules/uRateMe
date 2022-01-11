@@ -10,12 +10,17 @@ import Footer from '../../components/Footer/footer';
 
 export default function Home() {
     const [movies, setMovies] = useState([]);
+    const [series, setSeries] = useState([]);
 
-    console.log(movies);
+    console.log(series);
 
     useEffect(() => {
         api.get('/movies/show').then(response => {
             setMovies(response.data.movies);
+        });
+
+        api.get('/series/show').then(response => {
+            setSeries(response.data.series);
         })
     }, []);
 
@@ -40,6 +45,31 @@ export default function Home() {
                                 sinopse={movie.sinopse} 
                                 date={movie.date} 
                                 rateUsers={movie.rateUsers} 
+                                rateApi={movie.rateApi}
+                                nComments={movie.nComments} 
+                                isMovie={true} 
+                                type="Ação/Ficção"/>
+                        </div>
+                    ))}
+                </section>
+
+                <div id="home-main-top">
+                    <h3>Top Séries</h3>
+                    <span id='span-sep'></span>
+                    <a href="/series">Mostrar tudo</a>
+                </div>
+                <section>
+                    {series.map((movie, index) => (
+                        <div key={index}>
+                            <Card  
+                                id={movie.id} 
+                                title={movie.title} 
+                                photo={movie.photo} 
+                                backdrop_path={movie.backdrop_path}
+                                sinopse={movie.sinopse} 
+                                date={movie.date} 
+                                rateUsers={movie.rateUsers} 
+                                rateApi={movie.rateApi}
                                 nComments={movie.nComments} 
                                 isMovie={true} 
                                 type="Ação/Ficção"/>

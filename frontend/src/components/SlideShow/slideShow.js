@@ -24,7 +24,7 @@ export default function SlideShow() {
                         <div>
                             <span id="slide-type">Ação/ficção</span>
                             <h1>{filmes.title}</h1>
-                            <span id="slide-score">5.0</span>
+                            <span id="slide-score">{filmes.rateApi}</span>
                         </div>
                     </div>
                 ))}

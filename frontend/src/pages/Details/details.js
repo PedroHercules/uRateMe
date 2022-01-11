@@ -90,6 +90,10 @@ export default function Details(props) {
                         <h4>Pontuação</h4>
                         <span>{mediaScore}</span>
                     </div>
+                    <div className='details-score'>
+                        <h4>Crítica</h4>
+                        <span>{props.location.state.rateApi}</span>
+                    </div>
                     <div className='details-info-footer-right'>
                         <h3>Genero: {props.location.state.type}</h3>
                         <h3>Data de Lançamento: {props.location.state.date}</h3>
