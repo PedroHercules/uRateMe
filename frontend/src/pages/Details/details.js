@@ -15,23 +15,37 @@ export default function Details(props) {
     
     const [rates, setRates] = useState([]);
     const [myrate, setMyrate] = useState({});
-    const [isShowing, setIsShowing] = useState(false);
 
     
 
     useEffect(() => {
-        api.get(`movies/show/${props.location.state.id}`).then(response => {
-            console.log(response.data)
-            let vetLates = response.data.rates;
-            for(var i = 0; i < vetLates.length; i++){
-                if(vetLates[i].userId === user.id){
-                    setMyrate(vetLates[i]);
-                    vetLates.splice(i, 1);
+
+        if(props.location.state.isMovie === true) {
+            api.get(`movies/show/${props.location.state.id}`).then(response => {
+                let vetLates = response.data.rates;
+                for(var i = 0; i < vetLates.length; i++){
+                    if(vetLates[i].userId === user.id){
+                        setMyrate(vetLates[i]);
+                        vetLates.splice(i, 1);
+                    }
                 }
-            }
-            console.log(myrate)
-            setRates(vetLates);
-        })
+                console.log(myrate)
+                setRates(vetLates);
+            });
+        } else {
+            api.get(`series/show/${props.location.state.id}`).then(response => {
+                let vetLates = response.data.rates;
+                for(var i = 0; i < vetLates.length; i++){
+                    if(vetLates[i].userId === user.id){
+                        setMyrate(vetLates[i]);
+                        vetLates.splice(i, 1);
+                    }
+                }
+                console.log(myrate)
+                setRates(vetLates);
+            });
+        }
+
     }, []);
 
     return (

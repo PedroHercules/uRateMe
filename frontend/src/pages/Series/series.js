@@ -37,7 +37,8 @@ export default function Series() {
                                 sinopse={movie.sinopse} 
                                 date={movie.date} 
                                 rateUsers={movie.rateUsers} 
-                                nComments={movie.nComments} 
+                                nComments={movie.nComments}
+                                isMovie={false} 
                                 type="Ação/Ficção"/>
                         </div>
                     ))}

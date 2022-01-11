@@ -41,6 +41,7 @@ export default function Home() {
                                 date={movie.date} 
                                 rateUsers={movie.rateUsers} 
                                 nComments={movie.nComments} 
+                                isMovie={true} 
                                 type="Ação/Ficção"/>
                         </div>
                     ))}
