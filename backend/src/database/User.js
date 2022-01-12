@@ -18,6 +18,12 @@ const User = connection.define('users', {
         type: Sequelize.STRING,
         allownull: false,
         unique: true
+    },
+
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allownull: false,
+        defaultValue: false
     }
 });
 

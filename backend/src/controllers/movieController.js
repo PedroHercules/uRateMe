@@ -4,6 +4,7 @@ const Rate = require('../database/Rate.js');
 const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
+const adminAuth = require('../middlewares/admin.js');
 
 
 async function getMovies() {
@@ -21,7 +22,7 @@ async function getMovies() {
     return data;
 }
 
-router.post('/update', async (req, res) => {
+router.post('/update', adminAuth, async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
         const movies = await getMovies();

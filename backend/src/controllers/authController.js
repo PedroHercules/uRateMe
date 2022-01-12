@@ -55,7 +55,6 @@ router.post('/authenticate', async (req, res) => {
 
     user.password  = undefined;
 
-    const token = 
 
     res.send({
         user, 
