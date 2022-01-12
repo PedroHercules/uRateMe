@@ -85,7 +85,7 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
                     ): (
                         <div>
                             <button className="" onClick={updateRate}>Enviar</button>
-                            <button className="" onClick={cancel}>Cancelrar</button>
+                            <button className="" onClick={cancel}>Cancelar</button>
                         </div>
                     )}
                     
