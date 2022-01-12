@@ -14,7 +14,6 @@ function generateToken(params = {}) {
 }
 
 router.post('/register', async (req, res) => {
-
     try{
         let nickname = req.body.nickname;
         let email = req.body.email;
@@ -39,9 +38,12 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/authenticate', async (req, res) => {
-    const {nickname, password} = req.body;
-    console.log(nickname)
-    const user = await User.findOne({where: {nickname: nickname}});
+    let {nickname, password} = req.body;
+    const user = await User.findOne({
+        where: {
+            nickname: nickname
+        }
+    });
 
     if(!user) {
         return res.status(400).send({ error: 'Usuário não encontrado'})

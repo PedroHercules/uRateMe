@@ -1,10 +1,11 @@
 const express = require('express');
 const Rate = require('../database/Rate.js');
+const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
 
 
-router.post('/send/:id', async (req, res) => {
+router.post('/send/:id', authMiddleware, async (req, res) => {
     try {
         
         const id = req.params.id;
@@ -24,7 +25,7 @@ router.post('/send/:id', async (req, res) => {
 });
 
 
-router.post('/update/:id', async (req, res) => {
+router.post('/update/:id', authMiddleware, async (req, res) => {
     try {
         const id = req.params.id;
         const rate = await Rate.update({
@@ -40,7 +41,7 @@ router.post('/update/:id', async (req, res) => {
     }
 });
 
-router.post('/delete', async (req, res) => {
+router.post('/delete', authMiddleware, async (req, res) => {
     try{
         const id = req.body.id;
         if(id != undefined) {
