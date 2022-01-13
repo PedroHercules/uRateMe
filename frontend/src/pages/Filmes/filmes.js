@@ -8,6 +8,7 @@ import Card from '../../components/CardMoviesSeries/cardMoviesSeries';
 import Footer from '../../components/Footer/footer';
 
 import { Context } from "../../Context/authContext";
+import history from '../../history';
 
 export default function Filmes() {
 
@@ -20,6 +21,15 @@ export default function Filmes() {
         })
     }, []);
 
+    function handleAdd(){
+        history.push({
+            pathname: '/cadastrar',
+            state: {
+                isMovie: true
+            }
+        });
+    }
+
     return (
         <div className="filmes-container">
             <PageHeader />
@@ -27,7 +37,7 @@ export default function Filmes() {
                 <div id="filmes-main-top">
                     <h3>Filmes</h3>
                     <span id='line'></span>
-                    {user.isAdmin === true ? <a href="/cadastrar">Adicionar Filmes</a> : null}
+                    {user.isAdmin === true ? <a onClick={handleAdd} >Adicionar Filmes</a> : null}
                     
                 </div>
                 <section>

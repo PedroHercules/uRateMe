@@ -10,7 +10,7 @@ import Footer from '../../components/Footer/footer';
 
 import x from '../../assets/images/close_white.png';
 
-export default function AddMoviesSeries() {
+export default function AddMoviesSeries(props) {
     const [keywords, setKeywords] = useState('');
     const [results, setResults] = useState([]);
     const [isShowing, setIsShowing] = useState(false);
@@ -18,17 +18,31 @@ export default function AddMoviesSeries() {
 
     const {user} = useContext(Context);
 
+
     async function handleSearch() {
-        await axios.get('https://api.themoviedb.org/3/search/movie?api_key=b0b8e4ce54b50e319832fe88b0fbc4d3&language=pt-BR&query='+keywords).then(response => {
-            setResults(response.data.results);
-        });
+        if(props.location.state.isMovie === true){
+            await axios.get('https://api.themoviedb.org/3/search/movie?api_key=b0b8e4ce54b50e319832fe88b0fbc4d3&language=pt-BR&query='+keywords).then(response => {
+                setResults(response.data.results);
+            });
+        } else {
+            await axios.get('https://api.themoviedb.org/3/search/tv?api_key=b0b8e4ce54b50e319832fe88b0fbc4d3&language=pt-BR&query='+keywords).then(response => {
+                setResults(response.data.results);
+            });
+        }
     }
 
     async function add(data) {
-        await api.post(`movies/update/`, {
-            id: data.id,
-            userId: user.id
-        });
+        if(props.location.state.isMovie === true){
+            await api.post(`movies/update/`, {
+                id: data.id,
+                userId: user.id
+            });
+        } else {
+            await api.post(`series/update/`, {
+                id: data.id,
+                userId: user.id
+            });
+        }
     }
 
     function showModal(result){
