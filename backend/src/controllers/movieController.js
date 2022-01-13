@@ -7,13 +7,13 @@ const User = require('../database/User.js');
 const adminAuth = require('../middlewares/admin.js');
 
 
-async function getMovies() {
+async function getMovie(id_movie) {
     const api_key = 'b0b8e4ce54b50e319832fe88b0fbc4d3';
     const base_url = 'https://api.themoviedb.org/3/';
-    const api_url = base_url + 'discover/movie?api_key=' + api_key + '&sort_by=popularity.desc&language=pt-BR';
+    const api_url = base_url + `movie/${id_movie}?api_key=${api_key}&language=pt-BR`;
     const data = await axios.get(api_url)
         .then(response => {
-            return response.data.results;
+            return response.data;
         })
         .catch(err => {
             console.error(err);
@@ -25,20 +25,20 @@ async function getMovies() {
 router.post('/update', adminAuth, async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
-        const movies = await getMovies();
-        movies.forEach(async movie => {
-            const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
-            const data = await Movie.create({
-                id: id,
-                title: title,
-                sinopse: overview,
-                date: release_date,
-                rateApi: vote_average,
-                photo: poster + poster_path,
-                backdrop_path: poster + backdrop_path
-            });
+        const movie = await getMovie(req.body.id);
+        const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
+        /* const data = await Movie.create({
+            id: id,
+            title: title,
+            sinopse: overview,
+            date: release_date,
+            rateApi: vote_average,
+            photo: poster + poster_path,
+            backdrop_path: poster + backdrop_path
         });
+        */
 
+        console.log(title);
         return res.send('Filmes adicionados com sucesso!');
     }catch(err){
         return res.send({error: err})

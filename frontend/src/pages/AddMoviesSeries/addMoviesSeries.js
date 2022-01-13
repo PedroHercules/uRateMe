@@ -23,7 +23,7 @@ export default function AddMoviesSeries() {
 
     async function add(data) {
         console.log(data);
-        await api.post(`movies/add/`, {
+        await api.post(`movies/update`, {
             id: data.id,
         });
     }
