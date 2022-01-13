@@ -9,12 +9,20 @@ import Register from './pages/Register/register';
 import Details from './pages/Details/details';
 import Filmes from './pages/Filmes/filmes';
 import Series from './pages/Series/series';
+import AddMoviesSeries from './pages/AddMoviesSeries/addMoviesSeries';
 
-function CustoRoute({ isPrivate, ...rest}) {
-    const {loading, authenticated} = useContext(Context);
+function CustoRoute({ isPrivate, isAdmin, ...rest}) {
+    const {loading, authenticated, user} = useContext(Context);
+
+    console.log(user);
 
     if(loading){
         return <h1>Loading...</h1>
+    }
+
+    if(isAdmin && !user.isAdmin){
+        console.log(user);
+        return <Redirect to='/'/>
     }
 
     if(isPrivate && !authenticated){
@@ -48,6 +56,7 @@ export default function Routes() {
             <CustoRoute isPrivate exact path="/details" component={Details} />
             <CustoRoute isPrivate exact path="/filmes" component={Filmes} />
             <CustoRoute isPrivate exact path="/series" component={Series} />
+            <CustoRoute isPrivate isAdmin exact path="/cadastrar" component={AddMoviesSeries} />
         </Switch>
     );
 }

@@ -66,7 +66,7 @@ export default function Details(props) {
                 setRates(vetLates);
             });
         }
-
+        window.scrollTo(0,0)
     }, []);
 
     return (

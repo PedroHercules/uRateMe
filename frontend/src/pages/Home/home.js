@@ -11,9 +11,7 @@ import Footer from '../../components/Footer/footer';
 export default function Home() {
     const [movies, setMovies] = useState([]);
     const [series, setSeries] = useState([]);
-
-    console.log(series);
-
+    
     useEffect(() => {
         api.get('/movies/show').then(response => {
             setMovies(response.data.movies);

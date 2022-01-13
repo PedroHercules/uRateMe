@@ -20,11 +20,11 @@ export default function Filmes() {
     return (
         <div className="filmes-container">
             <PageHeader />
-            <main className="filmes-main">
+            <main className="filmes-main" >
                 <div id="filmes-main-top">
                     <h3>Filmes</h3>
                     <span id='line'></span>
-                    <a href="/">Adicionar Filmes</a>
+                    <a href="/cadastrar">Adicionar Filmes</a>
                 </div>
                 <section>
                     {movies.map((movie, index) => (
