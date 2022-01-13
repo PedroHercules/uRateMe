@@ -3,17 +3,18 @@ const Serie = require('../database/Serie.js');
 const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
+const adminAuth = require('../middlewares/admin');
 
 const Rate = require('../database/Rate.js');
 
-async function getSeries() {
+async function getSerie(id_serie) {
     const api_key = 'b0b8e4ce54b50e319832fe88b0fbc4d3';
     const base_url = 'https://api.themoviedb.org/3/';
-    const api_url = base_url + 'discover/tv?api_key=' + api_key + '&sort_by=popularity.desc&language=pt-BR';
+    const api_url = base_url + `tv/${id_serie}?api_key=${api_key}&language=pt-BR`;;
     
     const data = await axios.get(api_url)
         .then(response => {
-            return response.data.results;
+            return response.data;
         })
         .catch(err => {
             console.error(err);
@@ -22,25 +23,29 @@ async function getSeries() {
 }
 
 
-router.post('/update', async (req, res) => {
+router.post('/update', adminAuth, async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
-        const series = await getSeries();
-        series.forEach(async serie => {
-            const { id, name, overview, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
-            const data = await Serie.create({
-                id: id,
-                title: name,
-                sinopse: overview,
-                date: first_air_date,
-                rateApi: vote_average,
-                photo: poster + poster_path,
-                backdrop_path: poster + backdrop_path,
-                nSeasons: number_of_seasons
-            });
-        });
-
-        return res.send('Series adicionados com sucesso!');
+        const serie = await getSerie(req.body.id);
+        const { id, name, overview, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
+        await Serie.findOne({where: {id: id}})
+            .then(async check_serie => {
+                if (check_serie == undefined){
+                    const data = await Serie.create({
+                        id: id,
+                        title: name,
+                        sinopse: overview,
+                        date: first_air_date,
+                        rateApi: vote_average,
+                        photo: poster + poster_path,
+                        backdrop_path: poster + backdrop_path,
+                        nSeasons: number_of_seasons
+                    });
+                }else{
+                    console.log('Ja existe');
+                    res.status(400).send({error: "Serie ja existe"});
+                }
+            })
     }catch(err){
         return res.send({error: err})
     }

@@ -38,7 +38,7 @@ export default function AddMoviesSeries(props) {
                 userId: user.id
             });
         } else {
-            await api.post(`series/update/`, {
+            await api.post(`series/update`, {
                 id: data.id,
                 userId: user.id
             });
@@ -108,12 +108,22 @@ export default function AddMoviesSeries(props) {
                         <div className="add-modal-body">
                             <img src={"https://image.tmdb.org/t/p/w500" + modalParam.poster_path} width='250' height='350'/>
                             <div className="add-modal-body-right">
-                                <h1>{modalParam.title}</h1>
+                                {
+                                    (props.location.state.isMovie === true)?
+                                    <h1>{modalParam.title}</h1>:
+                                    <h1>{modalParam.name}</h1>
+                                }
+
                                 <h3>Descrição</h3>
                                 <p>{modalParam.overview}</p>
                                 <div className="add-modal-body-right-footer">
                                     <h4>Genero: Ação/Ficção</h4>
-                                    <h4>Data de Lançamento: {modalParam.release_date}</h4>
+                                    {
+                                        (props.location.state.isMovie === true)?
+                                        <h4>Data de Lançamento: {modalParam.release_date}</h4>:
+                                        <h4>Data de Lançamento: {modalParam.first_air_date}</h4>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

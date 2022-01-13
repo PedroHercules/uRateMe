@@ -28,6 +28,7 @@
 .series-main a {
     font: 700 0.9rem Poppins;
     color: #24A5B2;
+    cursor: pointer;
 }
 
 .series-container section {

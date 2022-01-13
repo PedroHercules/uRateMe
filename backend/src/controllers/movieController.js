@@ -27,18 +27,26 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
         const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
-        const data = await Movie.create({
-            id: id,
-            title: title,
-            sinopse: overview,
-            date: release_date,
-            rateApi: vote_average,
-            photo: poster + poster_path,
-            backdrop_path: poster + backdrop_path
-        });
-        return res.send('Filmes adicionados com sucesso!');
+        await Movie.findOne({where: {id: id}})
+            .then(async check_movie => {
+                if(check_movie == undefined) {
+                    const data = await Movie.create({
+                        id: id,
+                        title: title,
+                        sinopse: overview,
+                        date: release_date,
+                        rateApi: vote_average,
+                        photo: poster + poster_path,
+                        backdrop_path: poster + backdrop_path
+                    });
+                }else{
+                    console.log('ja existe')
+                    return res.status(400).send({error: "Filme já existe"});
+                }
+                
+            })
     }catch(err){
-        return res.send({error: err})
+        return res.status(400).send({error: "O registro do filme falhou"})
     }
     
 });
