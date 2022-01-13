@@ -27,7 +27,7 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
         const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
-        /* const data = await Movie.create({
+        const data = await Movie.create({
             id: id,
             title: title,
             sinopse: overview,
@@ -36,9 +36,6 @@ router.post('/update', adminAuth, async (req, res) => {
             photo: poster + poster_path,
             backdrop_path: poster + backdrop_path
         });
-        */
-
-        console.log(title);
         return res.send('Filmes adicionados com sucesso!');
     }catch(err){
         return res.send({error: err})
