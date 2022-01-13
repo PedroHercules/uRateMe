@@ -10,8 +10,11 @@ import Details from './pages/Details/details';
 import Filmes from './pages/Filmes/filmes';
 import Series from './pages/Series/series';
 import AddMoviesSeries from './pages/AddMoviesSeries/addMoviesSeries';
+import Rates from './components/Rates/rates';
+import Profile from './pages/Profile/profile';
+import PageHeader from "./components/PageHeader/pageHeader";
 
-function CustoRoute({ isPrivate, isAdmin, ...rest}) {
+function CustoRoute({ isPrivate, isAdmin, children, ...rest}) {
     const {loading, authenticated, user} = useContext(Context);
 
     console.log(user);
@@ -29,7 +32,7 @@ function CustoRoute({ isPrivate, isAdmin, ...rest}) {
         return <Redirect to='/login'/>
     }
 
-    return <Route {...rest}/>
+    return <Route {...rest} />
 }
 
 export default function Routes() {
@@ -56,6 +59,18 @@ export default function Routes() {
             <CustoRoute isPrivate exact path="/details" component={Details} />
             <CustoRoute isPrivate exact path="/filmes" component={Filmes} />
             <CustoRoute isPrivate exact path="/series" component={Series} />
+            <CustoRoute exact path="/Profile"  render={(props) => (
+                <div>
+                    <PageHeader />
+                    <Profile {...props} />
+                </div>
+            )}/>
+            <CustoRoute exact path="/Rates"  render={(props) => (
+                <div>
+                    <PageHeader />
+                    <Rates {...props} />
+                </div>
+            )}/>
             <CustoRoute isPrivate isAdmin exact path="/cadastrar" component={AddMoviesSeries} />
         </Switch>
     );

@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import api from '../../api';
+import { Context } from "../../Context/authContext";
 
 import './styles.css';
 
@@ -13,7 +14,9 @@ export default function AddMoviesSeries() {
     const [keywords, setKeywords] = useState('');
     const [results, setResults] = useState([]);
     const [isShowing, setIsShowing] = useState(false);
-    const [modalParam, setModalParam] = useState({})
+    const [modalParam, setModalParam] = useState({});
+
+    const {user} = useContext(Context);
 
     async function handleSearch() {
         await axios.get('https://api.themoviedb.org/3/search/movie?api_key=b0b8e4ce54b50e319832fe88b0fbc4d3&language=pt-BR&query='+keywords).then(response => {
@@ -22,9 +25,9 @@ export default function AddMoviesSeries() {
     }
 
     async function add(data) {
-        console.log(data);
-        await api.post(`movies/update`, {
+        await api.post(`movies/update/`, {
             id: data.id,
+            userId: user.id
         });
     }
 
