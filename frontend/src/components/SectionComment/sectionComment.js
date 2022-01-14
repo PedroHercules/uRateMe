@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import api from '../../api';
 
 import history from '../../history';
@@ -8,11 +8,14 @@ import Editar from '../../assets/images/editar.png';
 import Lixeira from '../../assets/images/lixeira.png';
 import x from '../../assets/images/close.png';
 
+import { Context } from '../../Context/authContext'
+
 import FormRate from '../FormRate/formRate';
 
 export default function SectionComment({ userId, contentId, ratesId, ratesUserNickname, score, date, comment, isMyrate}){
     const [isUpdated, setIsUpdated] = useState(false);
     const [isShowing, setIsShowing] = useState(false);
+    const {user} = useContext(Context);
 
     function update(){
         setIsUpdated(true);
@@ -104,16 +107,30 @@ export default function SectionComment({ userId, contentId, ratesId, ratesUserNi
             </div>
             
         ) : (
-            <section key={ratesId}> 
+            <section > 
                 <div className="comment-left">
                     <p>{ratesUserNickname[0].toUpperCase()}</p>
                 </div>
                 <div className="comment-public">
-                    <div className="comment-public-header">
-                        <h4>{ratesUserNickname}</h4>
-                        <span>Nota: {score}</span>
-                        <h5>{date}</h5>
+                    <div className="comment-public-header" id="comment-myrate" >
+                        <div>
+                            <h4>{ratesUserNickname}</h4>
+                            <span>Nota: {score}</span>
+                            <h5>{date}</h5>
+                        </div>
+                        {user.isAdmin === true ? (
+                            <span>
+                                <img 
+                                    src={Lixeira} 
+                                    alt="Lixeira" 
+                                    width="20" 
+                                    height="20"
+                                    onClick={showModal}
+                                />
+                            </span> 
+                        ): null}
                     </div>
+                    
                     <div className="comment-public-body">
                         <p>{comment}</p>
                     </div>

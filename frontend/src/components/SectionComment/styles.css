@@ -25,6 +25,7 @@
     display: flex;
     justify-content: center;
     top: 0;
+    left: 0;
     z-index: 1040;
     width: 100vw;
     height: 100vh;
