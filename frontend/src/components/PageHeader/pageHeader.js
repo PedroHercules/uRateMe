@@ -27,7 +27,7 @@ export default function PageHeader(){
                 <a href='/'>Home</a>
                 <a href='/filmes'>Filmes</a>
                 <a href='/series'>Séries</a>
-                <a href='/'>Sobre</a>
+                <a href='/sobre'>Sobre</a>
                 <a href='/'>Ajuda</a>
                 <div className="bar-search">
                     <input type="search" placeholder="Procurar"></input>

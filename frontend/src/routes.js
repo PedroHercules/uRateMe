@@ -14,6 +14,7 @@ import Rates from './components/Rates/rates';
 import PageHeader from "./components/PageHeader/pageHeader";
 import NavBarProfile from './components/NavBarProfile/navBarProfile';
 import Profile from "./components/Profile/profile";
+import Sobre from './pages/Sobre/sobre';
 
 function CustoRoute({ isPrivate, isAdmin, children, ...rest}) {
     const {loading, authenticated, user} = useContext(Context);
@@ -58,6 +59,7 @@ export default function Routes() {
             <CustoRoute isPrivate exact path="/details" component={Details} />
             <CustoRoute isPrivate exact path="/filmes" component={Filmes} />
             <CustoRoute isPrivate exact path="/series" component={Series} />
+            <CustoRoute isPrivate exact path="/sobre" component={Sobre} />
             <CustoRoute exact path="/Profile"  render={(props) => (
                 <div>
                     <PageHeader />

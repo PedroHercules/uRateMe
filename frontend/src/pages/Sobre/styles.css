@@ -1,0 +1,80 @@
+.sobre-container {
+    width: 100%;
+}
+
+.sobre-main-header {
+    width: 100%;
+    height: 650px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+    linear-gradient(
+      rgba(250,250,250,.8),rgba(250,250,250,.8)
+    ),
+    url('/home/marcos/Área de Trabalho/Projetos/uRateMe/frontend/src/assets/images/sobreImage.png') no-repeat;
+}
+
+
+.sobre-main-header h1 {
+    font: 700 3rem Poppins;
+    color: #24A5B2;
+}
+
+.sobre-main-header p {
+    width: 60%;
+    font: 400 1rem Poppins;
+}
+
+.sobre-main-body {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.sobre-main-body h1 {
+    font: 700 3rem Poppins;
+}
+
+.sobre-main-body p {
+    font: 400 1rem Poppins;
+    width: 60%;
+}
+
+.sobre-main-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sobre-main-footer div {
+    width: 283px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.sobre-main-footer h2 {
+    font: 700 1.5rem Poppins;
+}
+
+.sobre-main-footer h4 {
+    font: 400 0.9rem Poppins;
+    margin-bottom: 10px;
+}
+
+.sobre-main-footer p {
+    font: 400 1rem Poppins;
+    width: 250px;
+}
