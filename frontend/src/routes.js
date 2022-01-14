@@ -11,13 +11,12 @@ import Filmes from './pages/Filmes/filmes';
 import Series from './pages/Series/series';
 import AddMoviesSeries from './pages/AddMoviesSeries/addMoviesSeries';
 import Rates from './components/Rates/rates';
-import Profile from './pages/Profile/profile';
 import PageHeader from "./components/PageHeader/pageHeader";
+import NavBarProfile from './components/NavBarProfile/navBarProfile';
+import Profile from "./components/Profile/profile";
 
 function CustoRoute({ isPrivate, isAdmin, children, ...rest}) {
     const {loading, authenticated, user} = useContext(Context);
-
-    console.log(user);
 
     if(loading){
         return <h1>Loading...</h1>
@@ -62,13 +61,21 @@ export default function Routes() {
             <CustoRoute exact path="/Profile"  render={(props) => (
                 <div>
                     <PageHeader />
-                    <Profile {...props} />
+                    <NavBarProfile {...props} />
                 </div>
             )}/>
             <CustoRoute exact path="/Rates"  render={(props) => (
                 <div>
                     <PageHeader />
+                    <NavBarProfile {...props} />
                     <Rates {...props} />
+                </div>
+            )}/>
+            <CustoRoute exact path="/updateProfile"  render={(props) => (
+                <div>
+                    <PageHeader />
+                    <NavBarProfile {...props} />
+                    <Profile {...props} />
                 </div>
             )}/>
             <CustoRoute isPrivate isAdmin exact path="/cadastrar" component={AddMoviesSeries} />

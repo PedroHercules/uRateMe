@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('uratedb','user','root',{
+const connection = new Sequelize('uratedb','root','root',{
     host: 'localhost',
     dialect: 'mysql',
     timezone: "-03:00"

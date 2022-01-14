@@ -41,6 +41,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         backdrop_path: poster + backdrop_path,
                         nSeasons: number_of_seasons
                     });
+                    res.send({mensage: 'Cadastrado com sucesso!'})
                 }else{
                     console.log('Ja existe');
                     res.status(400).send({error: "Serie ja existe"});

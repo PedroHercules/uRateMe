@@ -5,6 +5,9 @@ import { Context } from "../../Context/authContext";
 
 import './styles.css';
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import PageHeader from '../../components/PageHeader/pageHeader';
 import Footer from '../../components/Footer/footer';
 
@@ -15,9 +18,17 @@ export default function AddMoviesSeries(props) {
     const [results, setResults] = useState([]);
     const [isShowing, setIsShowing] = useState(false);
     const [modalParam, setModalParam] = useState({});
+    const [genresName, setGenresName] = useState([]);
+
+    const notify = (status, mensage) => {
+        if (status === 200) {
+          toast.success(mensage);
+        } else if (status===400){
+          toast.error(mensage);
+        }
+      };
 
     const {user} = useContext(Context);
-
 
     async function handleSearch() {
         if(props.location.state.isMovie === true){
@@ -31,22 +42,54 @@ export default function AddMoviesSeries(props) {
         }
     }
 
+    function genresNames(ids) {
+        let aux = [];
+        for(var j = 0; j < ids.length; j++) {
+            for(var i = 0; i < genresName.length; i++) {
+                if(genresName[i].id === ids[j]){
+                    aux.push(genresName[i].name);
+                }
+            }
+        }
+        let test = '';
+        for(var x = 0; x < aux.length; x++) {
+            if(x===0){
+                test = (test + aux[x]);
+            } else{ 
+                test = (test + '/' + aux[x]);
+            }
+        }
+        return test;
+    }
+
     async function add(data) {
         if(props.location.state.isMovie === true){
             await api.post(`movies/update/`, {
                 id: data.id,
                 userId: user.id
-            });
+            }).then(response => {
+                showModal(modalParam);
+                notify(200, response.data.mensage);
+            }).catch(err => {
+                showModal(modalParam);
+                notify(400, err.response.data.error);
+            })
         } else {
             await api.post(`series/update`, {
                 id: data.id,
                 userId: user.id
-            });
+            }).then(response => {
+                showModal(modalParam);
+                notify(200, response.data.mensage);
+            }).catch(err => {
+                notify(400, err.response.data.error);
+                showModal(modalParam);
+            })
         }
     }
 
     function showModal(result){
-        console.log(result);
+        console.log(result)
         setModalParam(result);
         setIsShowing(!isShowing);
     }
@@ -69,10 +112,17 @@ export default function AddMoviesSeries(props) {
     
       }, [isShowing, showModal])
 
+      useEffect(() => {
+          axios.get(`https://api.themoviedb.org/3/genre/${props.location.state.isMovie === true ? 'movie' : 'tv'}/list?api_key=b0b8e4ce54b50e319832fe88b0fbc4d3&language=pt-BR`).then(response => {
+              setGenresName(response.data.genres);
+              console.log(response.data.genres)
+          });
+      }, []);
+
     return (
         <div className="add-container">
             <PageHeader />
-
+            <ToastContainer />
             <main className="add-main">
                 <div className="add-main-header">
                     <input 
@@ -85,13 +135,22 @@ export default function AddMoviesSeries(props) {
                 </div>
                 <div className="add-main-body">
                     {results.map((result, index) => (
-                        <div key={result.id}>
+                        <div key={index} >
+                        {result.poster_path != null ? (
+                            <div key={result.id}>
                             <div className="add-card" onClick={() => showModal(result)} style={{'background': `url(https://image.tmdb.org/t/p/w500${result.poster_path})`, 'backgroundSize': '260px 320px'}} >
                                 <div className="add-card-body">
-                                    <h3>{result.title}</h3>
-                                    <h4>Ação/Ficção</h4>
+                                    
+                                    {
+                                        (props.location.state.isMovie === true)?
+                                        <h3>{result.title}</h3>:
+                                        <h3>{result.name}</h3>
+                                    }
+                                    <h4>{genresNames(result.genre_ids)}</h4>
                                 </div>
                             </div>
+                        </div>
+                        ) : null}
                         </div>
                     ))}
                 </div>
@@ -117,7 +176,7 @@ export default function AddMoviesSeries(props) {
                                 <h3>Descrição</h3>
                                 <p>{modalParam.overview}</p>
                                 <div className="add-modal-body-right-footer">
-                                    <h4>Genero: Ação/Ficção</h4>
+                                    <h4>Genero: {genresNames(modalParam.genre_ids)}</h4>
                                     {
                                         (props.location.state.isMovie === true)?
                                         <h4>Data de Lançamento: {modalParam.release_date}</h4>:

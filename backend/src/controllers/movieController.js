@@ -39,6 +39,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         photo: poster + poster_path,
                         backdrop_path: poster + backdrop_path
                     });
+                    res.send({mensage: 'Cadastrado com sucesso!'})
                 }else{
                     console.log('ja existe')
                     return res.status(400).send({error: "Filme já existe"});
