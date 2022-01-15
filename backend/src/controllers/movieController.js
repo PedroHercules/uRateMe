@@ -26,7 +26,8 @@ router.post('/update', adminAuth, async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
-        const { id, title, overview, vote_average, release_date, poster_path, backdrop_path } = movie;
+        const { id, title, overview, genres, vote_average, release_date, poster_path, backdrop_path } = movie;
+        const genre = genres[0].name + "/" + genres[1].name;
         await Movie.findOne({where: {id: id}})
             .then(async check_movie => {
                 if(check_movie == undefined) {
@@ -35,6 +36,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         title: title,
                         sinopse: overview,
                         date: release_date,
+                        genre: genre,
                         rateApi: vote_average,
                         photo: poster + poster_path,
                         backdrop_path: poster + backdrop_path

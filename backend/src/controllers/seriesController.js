@@ -27,7 +27,8 @@ router.post('/update', adminAuth, async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
         const serie = await getSerie(req.body.id);
-        const { id, name, overview, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
+        const { id, name, overview, genres, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
+        const genre = genres[0].name + "/" + genres[1].name;
         await Serie.findOne({where: {id: id}})
             .then(async check_serie => {
                 if (check_serie == undefined){
@@ -35,6 +36,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         id: id,
                         title: name,
                         sinopse: overview,
+                        genre: genre,
                         date: first_air_date,
                         rateApi: vote_average,
                         photo: poster + poster_path,
