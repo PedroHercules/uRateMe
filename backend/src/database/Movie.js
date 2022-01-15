@@ -1,6 +1,5 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
-const Rate = require('./Rate.js');
 
 
 const Movie = connection.define('movies', {
