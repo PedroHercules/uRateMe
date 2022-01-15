@@ -21,6 +21,11 @@ const Movie = connection.define('movies', {
         allownull: false
     },
 
+    genre: {
+        type: sequelize.STRING,
+        allownull: false
+    },
+
     date: {
         type: sequelize.DATEONLY,
         allownull: false

@@ -6,7 +6,7 @@ const Rate = require('../database/Rate.js');
 
 
 router.get('/profile', async (req, res) => {
-
+    
     try{
         const userId = req.body.id;
         const rates = await Rate.findAll({
