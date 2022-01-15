@@ -5,10 +5,10 @@ const router = express.Router();
 const Rate = require('../database/Rate.js');
 
 
-router.get('/profile', async (req, res) => {
-
+router.get('/profile/:id', async (req, res) => {
+    console.log(req.params.id)
     try{
-        const userId = req.body.id;
+        const userId = req.params.id;
         const rates = await Rate.findAll({
             include: [
                 {

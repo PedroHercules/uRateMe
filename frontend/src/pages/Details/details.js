@@ -16,6 +16,7 @@ export default function Details(props) {
     const [rates, setRates] = useState([]);
     const [myrate, setMyrate] = useState({});
     const [mediaScore, setMediaScore] = useState(0.0);
+    const [movie, setMovie] = useState({});
 
     
 
@@ -23,6 +24,8 @@ export default function Details(props) {
 
         if(props.location.state.isMovie === true) {
             await api.get(`movies/show/${props.location.state.id}`).then(response => {
+                setMovie(response.data.movie);
+                console.log(response.data.movie)
                 let vetLates = response.data.rates;
                 let sum = 0;
                 for(var i = 0; i < vetLates.length; i++){
@@ -45,6 +48,7 @@ export default function Details(props) {
             });
         } else {
             await api.get(`series/show/${props.location.state.id}`).then(response => {
+                setMovie(response.data.serie);
                 let vetLates = response.data.rates;
                 let sum = 0;
                 for(var i = 0; i < vetLates.length; i++){
@@ -70,16 +74,16 @@ export default function Details(props) {
         <div>
             <PageHeader />
             <main>
-                <div className="img-fundo" style={{'background': `url(${props.location.state.backdrop_path})`, 'backgroundSize': '100% 100%'}}>
+                <div className="img-fundo" style={{'backgroundImage': `url(${movie.backdrop_path})`}}>
                     <div className="opa"></div>
                 </div>
                 <section className="details-info">
-                    <img className="img-left" src={props.location.state.photo} alt="imagem do filme" />
+                    <img className="img-left" src={movie.photo} alt="imagem do filme" />
                     <div className="section-right">
-                        <h1>{props.location.state.title}</h1>
-                        <span>{props.location.state.type}</span>
+                        <h1>{movie.title}</h1>
+                        <span>{movie.genre}</span>
                         <h3>Descrição</h3>
-                        <p>{props.location.state.sinopse}</p>
+                        <p>{movie.sinopse}</p>
                     </div>
                 </section>
                 <div className='details-info-footer'>
@@ -89,11 +93,11 @@ export default function Details(props) {
                     </div>
                     <div className='details-score'>
                         <h4>Crítica</h4>
-                        <span>{props.location.state.rateApi}</span>
+                        <span>{movie.rateApi}</span>
                     </div>
                     <div className='details-info-footer-right'>
-                        <h3>Genero: {props.location.state.type}</h3>
-                        <h3>Data de Lançamento: {props.location.state.date}</h3>
+                        <h3>Genero: {movie.genre}</h3>
+                        <h3>Data de Lançamento: {movie.date}</h3>
                     </div>
                 </div>
             </main>
@@ -108,7 +112,7 @@ export default function Details(props) {
                             upComment=''
                             isUpdate={false}
                             tipo = {props.location.state.isMovie === true ? 'filme' : 'serie'}
-                            name =  {props.location.state.title}
+                            name =  {movie.title}
                         />    
                     ) : (
                         <SectionComment 
