@@ -1,6 +1,5 @@
 const express = require('express');
 const Rate = require('../database/Rate.js');
-const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -10,11 +9,14 @@ router.post('/send/:id', async (req, res) => {
         
         const id = req.params.id;
         let userId = req.body.user;
-        
+        let contentName = req.body.name;
+        let contentType = req.body.tipo;
         const rate = await Rate.create({
             score: req.body.score,
             comment: req.body.comment,
             contentId: id,
+            contentName: contentName,
+            contentType: contentType,
             userId: userId
         });
 

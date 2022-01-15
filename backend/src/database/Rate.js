@@ -1,6 +1,8 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
 const User = require("./User.js");
+const Movie = require("./Movie.js");
+const Serie = require("./Serie.js");
 
 const Rate = connection.define('rates', {
 
@@ -22,6 +24,16 @@ const Rate = connection.define('rates', {
 
     contentId: {
         type: sequelize.INTEGER,
+        allowNull: false
+    },
+
+    contentName: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+
+    contentType: {
+        type: sequelize.STRING,
         allowNull: false
     }
 

@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const connection = require('./database.js');
-const Rate = require('./Rate.js');
+
 
 const Serie = connection.define('series', {
 
