@@ -146,7 +146,7 @@ export default function AddMoviesSeries(props) {
                                         <h3>{result.title}</h3>:
                                         <h3>{result.name}</h3>
                                     }
-                                    <h4>{genresNames(result.genre_ids)}</h4>
+                                    <h4>{genresNames(result.genre_ids.slice(0, 2))}</h4>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,8 @@ import PageHeader from "./components/PageHeader/pageHeader";
 import NavBarProfile from './components/NavBarProfile/navBarProfile';
 import Profile from "./components/Profile/profile";
 import Sobre from './pages/Sobre/sobre';
+import Ajuda from './pages/Ajuda/ajuda';
+import Footer from "./components/Footer/footer";
 
 function CustoRoute({ isPrivate, isAdmin, children, ...rest}) {
     const {loading, authenticated, user} = useContext(Context);
@@ -60,27 +62,37 @@ export default function Routes() {
             <CustoRoute isPrivate exact path="/filmes" component={Filmes} />
             <CustoRoute isPrivate exact path="/series" component={Series} />
             <CustoRoute isPrivate exact path="/sobre" component={Sobre} />
+            <CustoRoute isPrivate exact path="/ajuda" component={Ajuda} />
+            
             <CustoRoute exact path="/Profile"  render={(props) => (
-                <div>
+                <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
-                    <NavBarProfile {...props} />
+                    <NavBarProfile select={1} {...props} />
+                    <Footer {...props} />
                 </div>
             )}/>
             <CustoRoute exact path="/Rates"  render={(props) => (
-                <div>
+                <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
-                    <NavBarProfile {...props} />
+                    <div style={{'height': '100%', 'display': 'flex',}}>
+                    <NavBarProfile select={2} {...props} />
                     <Rates {...props} />
+                    </div>
+                    <Footer {...props} />
                 </div>
             )}/>
             <CustoRoute exact path="/updateProfile"  render={(props) => (
-                <div>
+                <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
-                    <NavBarProfile {...props} />
+                    <div style={{'height': '100%', 'display': 'flex',}}>
+                    <NavBarProfile  select={1} {...props} />
                     <Profile {...props} />
+                    </div>
+                    <Footer {...props} />
                 </div>
             )}/>
             <CustoRoute isPrivate isAdmin exact path="/cadastrar" component={AddMoviesSeries} />
+            <CustoRoute component={Home} />
         </Switch>
     );
 }

@@ -32,7 +32,7 @@ export default function Filmes() {
 
     return (
         <div className="filmes-container">
-            <PageHeader />
+            <PageHeader SearchIsVisible={true}/>
             <main className="filmes-main" >
                 <div id="filmes-main-top">
                     <h3>Filmes</h3>

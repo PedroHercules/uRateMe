@@ -1,25 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import api from '../../api';
 
 import './styles.css';
 import history from '../../history';
 
-export default function FormRate({ rateId, contentId, userId, nickname, upScore, upComment, isUpdate, setIsUpdated }) {
+import { Context } from '../../Context/authContext';
+
+export default function FormRate({ rateId, contentId, userId, nickname, upScore, upComment, isUpdate, setIsUpdated, tipo, name }) {
 
     const [score, setScore] = useState(1);
     const [comment, setComment] = useState('');
+    const {user} = useContext(Context);
 
     async function rate(e) {
+        console.log(userId);
         e.preventDefault();
         
         await api.post(`rate/send/${contentId}`, {
             "score": score,
             "comment": comment,
             "contentId": contentId,
-            "user": userId
+            "user": user.id,
+            "tipo": tipo,
+            "name": name
         }).then(response => {
             console.log(response);
             history.go(0);
+        }).catch(err => {
+            console.log(err);
         })
         
     }

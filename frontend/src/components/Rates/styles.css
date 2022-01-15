@@ -1,0 +1,62 @@
+.rates-container {
+    width: 88%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px 10px;
+}
+
+.rates-container h3 {
+    font: 700 1.2rem Poppins;
+}
+
+.rates-container span {
+    width: 60vw;
+    text-align: center; 
+    border-bottom: 2px solid #C7BDE4; 
+    line-height: 0.1em;
+    margin: 10px 0 15px;
+}
+
+.rates-list {
+    width: 60vw;
+    
+}
+
+.rates-list .rates-list-header {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 10px;
+}
+
+.rates-list .rates-list-header p {
+    text-align: start;
+    width: 100%;
+}
+
+.rates-list .rates-list-header img {
+    visibility: hidden;
+}
+
+.rates-list-rate {
+    display: flex;
+    justify-content: space-around;
+
+    border: 1px solid #C9C9C9;
+    margin-top: 10px;
+    padding: 15px 10px;
+    -webkit-box-shadow: 3px 6px 10px -6px rgba(0,0,0,1);
+    -moz-box-shadow: 3px 6px 10px -6px rgba(0,0,0,1);
+    box-shadow: 3px 6px 10px -6px rgba(0,0,0,1);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.rates-list-rate:hover {
+    width: 62vw;
+}
+
+
+.rates-list-rate p {
+    text-align: start;
+    width: 100%;
+}

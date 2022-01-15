@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
     }
 
     const [scheme, token] = parts;
-    
+    console.log(token)
     if (!/^Bearer$/i.test(scheme)) {
         return res.status(401).send({error: 'Erro no formato do token'});
     }

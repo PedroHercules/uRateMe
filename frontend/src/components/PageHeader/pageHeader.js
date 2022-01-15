@@ -9,7 +9,7 @@ import Seta from '../../assets/images/seta_baixo.png';
 import logout from '../../assets/images/logout.png';
 import profile from '../../assets/images/user.png'
 
-export default function PageHeader(){
+export default function PageHeader({ SearchIsVisible }){
     const { handleLogout, user } = useContext(Context);
 
     const [dropDownMenu, setDropDownMenu] = useState(false);
@@ -23,15 +23,17 @@ export default function PageHeader(){
             <div className="bar-left">
                 <img src={Logo} alt="logo" ></img>
             </div>
-            <div className="bar-right">
+            <div className="bar-right" style={{'width': SearchIsVisible === true ? '60vw' : '40vw'}}>
                 <a href='/'>Home</a>
                 <a href='/filmes'>Filmes</a>
                 <a href='/series'>Séries</a>
                 <a href='/sobre'>Sobre</a>
-                <a href='/'>Ajuda</a>
-                <div className="bar-search">
-                    <input type="search" placeholder="Procurar"></input>
-                </div>
+                <a href='/ajuda'>Ajuda</a>
+                {SearchIsVisible === true ? (
+                    <div className="bar-search">
+                        <input type="search" placeholder="Procurar"></input>
+                    </div>
+                ) : null}
                 <div className="bar-icon-user">
                     <div onClick={handleShowDropDown}>
                         <p>{user.nickname[0].toUpperCase()}</p>
@@ -45,7 +47,7 @@ export default function PageHeader(){
                 <span>.</span>
                 <div>
                     <img src={profile} width="19" height="19" alt='icone de perfil'/>
-                    <a >Perfil</a>
+                    <a href='/updateProfile'>Perfil</a>
                 </div>
                 <div onClick={handleLogout} >
                     <img src={logout} width="19" height="19" alt='icone de sair'/>

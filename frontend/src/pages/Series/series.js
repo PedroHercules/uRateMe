@@ -32,7 +32,7 @@ export default function Series() {
 
     return (
         <div className="series-container">
-            <PageHeader />
+            <PageHeader SearchIsVisible={true}/>
             <main className="series-main">
                 <div id="series-main-top">
                     <h3>Séries</h3>

@@ -24,7 +24,7 @@ export default function Home() {
 
     return (
         <div className="home-body">
-            <PageHeader />
+            <PageHeader SearchIsVisible={false} />
             <SlideShow />
             <main className="home-main">
                 <div id="home-main-top">
