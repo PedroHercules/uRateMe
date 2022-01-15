@@ -15,7 +15,7 @@
     linear-gradient(
       rgba(250,250,250,.8),rgba(250,250,250,.8)
     ),
-    url('/home/marcos/Área de Trabalho/Projetos/uRateMe/frontend/src/assets/images/sobreImage.png') no-repeat;
+    url('../../assets/images/sobreImage.png') no-repeat;
 }
 
 
