@@ -5,6 +5,7 @@ const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
 const adminAuth = require('../middlewares/admin.js');
+const {Op} = require('sequelize')
 
 
 async function getMovie(id_movie) {
@@ -87,6 +88,25 @@ router.get('/show/:id', async (req, res) => {
         }
     });
 })
+
+
+router.post('/search', async (req, res) => {
+    try {
+        const query = req.body.search;
+        console.log(query);
+        const movie = await Movie.findAll({
+            where: {
+                title: {
+                    [Op.like]: "%" + query + "%"
+                }
+            }
+        });
+
+        res.send({movie});
+    } catch (error) {
+        return res.status(400).send({error: error});
+    }
+});
 
 
 module.exports = app => app.use('/movies', router);

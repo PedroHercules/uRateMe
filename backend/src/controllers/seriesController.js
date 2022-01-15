@@ -4,6 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
 const adminAuth = require('../middlewares/admin');
+const {Op} = require('sequelize');
 
 const Rate = require('../database/Rate.js');
 
@@ -90,6 +91,23 @@ router.get('/show/:id', async (req, res) => {
         }
     });
 
-})
+});
+
+router.post('/search', async (req, res) => {
+    try {
+        const query = req.body.search;
+        const serie = await Serie.findAll({
+            where: {
+                title: {
+                    [Op.like]: "%" + query + "%"
+                }
+            }
+        });
+
+        return res.send({serie});
+    } catch (error) {
+        return res.status(400).send({error: error});
+    }
+});
 
 module.exports = app => app.use('/series', router);
