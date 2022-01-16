@@ -26,7 +26,7 @@ export default function CardMoviesSeries({ id, title, photo, backdrop_path, sino
     }
 
     return (
-        <div className="card" onClick={handleDetail} style={{'background': `url(${photo})`, 'backgroundSize': '260px 320px'}} >
+        <div className="card" onClick={handleDetail} style={{'backgroundImage': `url(${photo})`, 'backgroundSize': '260px 320px'}} >
             <div className="card-body">
                 <h3>{title}</h3>
                 <h4>{type}</h4>

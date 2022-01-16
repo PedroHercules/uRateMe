@@ -30,9 +30,15 @@ export default function Series() {
         });
     }
 
+    function handleSearch(search){
+        api.post('/series/search', {'search': search}).then(response => {
+            setSeries(response.data.serie);
+        });
+    }
+
     return (
         <div className="series-container">
-            <PageHeader SearchIsVisible={true}/>
+            <PageHeader SearchIsVisible={true} HandleSearch={handleSearch}/>
             <main className="series-main">
                 <div id="series-main-top">
                     <h3>Séries</h3>

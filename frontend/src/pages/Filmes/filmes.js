@@ -21,6 +21,13 @@ export default function Filmes() {
         })
     }, []);
 
+    function handleSearch(search){
+        api.post('/movies/search', {'search': search}).then(response => {
+            setMovies(response.data.movie);
+        });
+        console.log(movies)
+    }
+
     function handleAdd(){
         history.push({
             pathname: '/cadastrar',
@@ -32,7 +39,7 @@ export default function Filmes() {
 
     return (
         <div className="filmes-container">
-            <PageHeader SearchIsVisible={true}/>
+            <PageHeader SearchIsVisible={true} HandleSearch={handleSearch} />
             <main className="filmes-main" >
                 <div id="filmes-main-top">
                     <h3>Filmes</h3>
@@ -41,22 +48,26 @@ export default function Filmes() {
                     
                 </div>
                 <section>
-                    {movies.map((movie, index) => (
-                        <div key={index} className='filmes-filme'>
-                            <Card  
-                                id={movie.id} 
-                                title={movie.title} 
-                                photo={movie.photo} 
-                                backdrop_path={movie.backdrop_path}
-                                sinopse={movie.sinopse} 
-                                date={movie.date} 
-                                rateUsers={movie.rateUsers} 
-                                rateApi={movie.rateApi}
-                                nComments={movie.nComments} 
-                                isMovie={true} 
-                                type={movie.genre}/>
-                        </div>
-                    ))}
+                    {movies && (
+                        <>
+                        {movies.map((movie, index) => (
+                            <div key={index} className='filmes-filme'>
+                                <Card  
+                                    id={movie.id} 
+                                    title={movie.title} 
+                                    photo={movie.photo} 
+                                    backdrop_path={movie.backdrop_path}
+                                    sinopse={movie.sinopse} 
+                                    date={movie.date} 
+                                    rateUsers={movie.rateUsers} 
+                                    rateApi={movie.rateApi}
+                                    nComments={movie.nComments} 
+                                    isMovie={true} 
+                                    type={movie.genre}/>
+                            </div>
+                        ))}
+                        </>
+                    )}
                 </section>
             </main>
             <Footer />

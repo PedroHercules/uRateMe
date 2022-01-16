@@ -9,7 +9,7 @@ import Seta from '../../assets/images/seta_baixo.png';
 import logout from '../../assets/images/logout.png';
 import profile from '../../assets/images/user.png'
 
-export default function PageHeader({ SearchIsVisible }){
+export default function PageHeader({ SearchIsVisible, HandleSearch}){
     const { handleLogout, user } = useContext(Context);
 
     const [dropDownMenu, setDropDownMenu] = useState(false);
@@ -31,7 +31,11 @@ export default function PageHeader({ SearchIsVisible }){
                 <a href='/ajuda'>Ajuda</a>
                 {SearchIsVisible === true ? (
                     <div className="bar-search">
-                        <input type="search" placeholder="Procurar"></input>
+                        <input 
+                            type="search" 
+                            placeholder="Procurar"
+                            onChange={(e) => {HandleSearch(e.target.value)}}
+                        ></input>
                     </div>
                 ) : null}
                 <div className="bar-icon-user">
