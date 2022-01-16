@@ -96,7 +96,6 @@
 
 #register-body-left form button{
     width: 60%;
-    height: 56px;
     background-color: #24A5B2;
     color: #fff;
     font-size: 1.4rem;
@@ -104,6 +103,7 @@
     border-radius: 0.4rem;
     outline: 0;
     margin: 2rem 0;
+    padding: 15px;
 }
 
 #register-body-left form h3 {

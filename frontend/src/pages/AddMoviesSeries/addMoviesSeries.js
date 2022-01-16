@@ -19,6 +19,7 @@ export default function AddMoviesSeries(props) {
     const [isShowing, setIsShowing] = useState(false);
     const [modalParam, setModalParam] = useState({});
     const [genresName, setGenresName] = useState([]);
+    const [noSearch, setNoSearch] = useState(false);
 
     const notify = (status, mensage) => {
         if (status === 200) {
@@ -40,6 +41,7 @@ export default function AddMoviesSeries(props) {
                 setResults(response.data.results);
             });
         }
+        setNoSearch(true);
     }
 
     function genresNames(ids) {
@@ -133,6 +135,7 @@ export default function AddMoviesSeries(props) {
                     />
                     <button className="" onClick={handleSearch}>Procurar</button>
                 </div>
+                {results.length === 0 && noSearch === true ? <p>Nenhum resultado! Porfavor tente novamente com outras palavras.</p> : null}
                 <div className="add-main-body">
                     {results.map((result, index) => (
                         <div key={index} className="add-main-result">

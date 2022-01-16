@@ -47,18 +47,22 @@ export default function Rates() {
                     <img src={seta}  width="20" height="20"/>
                 </div>
 
-                <div className="rates-list-body">
-                    {rates.map(rate => (
-                        <div className="rates-list-rate" onClick={() => handleDetail(rate.contentId, rate.contentType)}>
-                            <p>{rate.date}</p>
-                            <p>{rate.contentName}</p>
-                            <p>{rate.score}</p>
-                            <p>{rate.comment}</p>
-                            <img src={seta}  width="20" height="20"/>
-                        </div>
 
-                    ))}
-                </div>
+                {rates.length === 0 ? <h3>Nenhuma avaliações encontrada</h3> : (
+                    <div className="rates-list-body">
+                        {rates.map(rate => (
+                            <div className="rates-list-rate" onClick={() => handleDetail(rate.contentId, rate.contentType)}>
+                                <p>{rate.date}</p>
+                                <p>{rate.contentName}</p>
+                                <p>{rate.score}</p>
+                                <p>{rate.comment}</p>
+                                <img src={seta}  width="20" height="20"/>
+                            </div>
+
+                        ))}
+                    </div>
+                )}
+
             </div>
         </div>
     );

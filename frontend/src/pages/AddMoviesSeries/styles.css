@@ -10,6 +10,12 @@
     margin: 10px 30px;
 }
 
+.add-main p {
+    font: 700 1.0rem Poppins;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
 .add-input {
     width: 70%;
     height: 45px;
@@ -43,7 +49,7 @@
 }
 
 .add-main-result {
-    margin: 0px 21px;
+    margin: 0px 20px;
 }
 
 .add-card {
