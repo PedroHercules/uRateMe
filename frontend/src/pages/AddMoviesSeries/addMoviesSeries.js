@@ -135,7 +135,7 @@ export default function AddMoviesSeries(props) {
                 </div>
                 <div className="add-main-body">
                     {results.map((result, index) => (
-                        <div key={index} >
+                        <div key={index} className="add-main-result">
                         {result.poster_path != null ? (
                             <div key={result.id}>
                             <div className="add-card" onClick={() => showModal(result)} style={{'background': `url(https://image.tmdb.org/t/p/w500${result.poster_path})`, 'backgroundSize': '260px 320px'}} >

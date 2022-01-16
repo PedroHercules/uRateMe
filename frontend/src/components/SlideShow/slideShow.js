@@ -22,7 +22,7 @@ export default function SlideShow() {
                     <div className='slideBody' key={index}>
                         <img src={filmes.backdrop_path} />
                         <div>
-                            <span id="slide-type">Ação/ficção</span>
+                            <span id="slide-type">{filmes.genre}</span>
                             <h1>{filmes.title}</h1>
                             <span id="slide-score">{filmes.rateApi}</span>
                         </div>

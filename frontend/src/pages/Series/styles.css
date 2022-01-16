@@ -38,7 +38,10 @@
 .series-container section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     
     margin: 0 10px;
+}
+
+.series-serie {
+    margin: 0px 25px;
 }

@@ -11,6 +11,7 @@ import Footer from '../../components/Footer/footer';
 export default function Home() {
     const [movies, setMovies] = useState([]);
     const [series, setSeries] = useState([]);
+    console.log(movies)
     
     useEffect(() => {
         api.get('/movies/show').then(response => {
@@ -46,7 +47,7 @@ export default function Home() {
                                 rateApi={movie.rateApi}
                                 nComments={movie.nComments} 
                                 isMovie={true} 
-                                type="Ação/Ficção"/>
+                                type={movie.genre}/>
                         </div>
                     ))}
                 </section>
@@ -70,7 +71,7 @@ export default function Home() {
                                 rateApi={movie.rateApi}
                                 nComments={movie.nComments} 
                                 isMovie={true} 
-                                type="Ação/Ficção"/>
+                                type={movie.genre}/>
                         </div>
                     ))}
                 </section>

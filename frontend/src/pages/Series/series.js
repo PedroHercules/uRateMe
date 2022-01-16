@@ -41,7 +41,7 @@ export default function Series() {
                 </div>
                 <section>
                     {series.map((movie, index) => (
-                        <div key={index}>
+                        <div key={index} className='series-serie'>
                             <Card  
                                 id={movie.id} 
                                 title={movie.title} 

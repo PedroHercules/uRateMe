@@ -42,7 +42,7 @@ export default function Filmes() {
                 </div>
                 <section>
                     {movies.map((movie, index) => (
-                        <div key={index}>
+                        <div key={index} className='filmes-filme'>
                             <Card  
                                 id={movie.id} 
                                 title={movie.title} 
