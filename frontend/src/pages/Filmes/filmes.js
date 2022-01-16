@@ -48,7 +48,7 @@ export default function Filmes() {
                     
                 </div>
                 <section>
-                    {movies && (
+                    {movies.length != 0 ? (
                         <>
                         {movies.map((movie, index) => (
                             <div key={index} className='filmes-filme'>
@@ -67,7 +67,7 @@ export default function Filmes() {
                             </div>
                         ))}
                         </>
-                    )}
+                    ) : <h2>Nenhum resultado</h2>}
                 </section>
             </main>
             <Footer />

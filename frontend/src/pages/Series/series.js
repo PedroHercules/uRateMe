@@ -46,22 +46,26 @@ export default function Series() {
                     {user.isAdmin === true ? <a onClick={handleAdd} >Adicionar Séries</a> : null}
                 </div>
                 <section>
-                    {series.map((movie, index) => (
-                        <div key={index} className='series-serie'>
-                            <Card  
-                                id={movie.id} 
-                                title={movie.title} 
-                                photo={movie.photo} 
-                                backdrop_path={movie.backdrop_path}
-                                sinopse={movie.sinopse} 
-                                date={movie.date} 
-                                rateUsers={movie.rateUsers} 
-                                rateApi={movie.rateApi}
-                                nComments={movie.nComments}
-                                isMovie={false} 
-                                type={movie.genre}/>
-                        </div>
-                    ))}
+                    {series.length != 0 ? (
+                        <>
+                        {series.map((movie, index) => (
+                            <div key={index} className='series-serie'>
+                                <Card  
+                                    id={movie.id} 
+                                    title={movie.title} 
+                                    photo={movie.photo} 
+                                    backdrop_path={movie.backdrop_path}
+                                    sinopse={movie.sinopse} 
+                                    date={movie.date} 
+                                    rateUsers={movie.rateUsers} 
+                                    rateApi={movie.rateApi}
+                                    nComments={movie.nComments}
+                                    isMovie={false} 
+                                    type={movie.genre}/>
+                            </div>
+                        ))}
+                        </>
+                    ) : <h2>Nenhum ressultado</h2>}
                 </section>
             </main>
             <Footer />
