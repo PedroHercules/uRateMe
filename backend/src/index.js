@@ -13,4 +13,5 @@ require('./controllers/movieController')(app);
 require('./controllers/seriesController')(app);
 require('./controllers/rateController')(app);
 require('./controllers/profileController')(app);
-app.listen(3333);
+
+module.exports = app;

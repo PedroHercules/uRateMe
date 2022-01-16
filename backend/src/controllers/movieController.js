@@ -28,7 +28,12 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
         const { id, title, overview, genres, vote_average, release_date, poster_path, backdrop_path } = movie;
-        const genre = genres[0].name + "/" + genres[1].name;
+        let genre = ""
+        if (genres.length > 1) {
+            genre = genres[0].name + "/" + genres[1].name;
+        }else{
+            genre = genres[0].name;
+        }
         await Movie.findOne({where: {id: id}})
             .then(async check_movie => {
                 if(check_movie == undefined) {

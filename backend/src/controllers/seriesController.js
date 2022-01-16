@@ -29,7 +29,19 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const serie = await getSerie(req.body.id);
         const { id, name, overview, genres, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
-        const genre = genres[0].name + "/" + genres[1].name;
+        let genre = "";
+        if (genres.length > 1) {
+            genre = genres[0].name + "/" + genres[1].name;
+        }else{
+            console.log(genres.length)
+            genre = genres[0].name;
+        }
+
+        
+        
+        /* console.log("Name: "+ name);
+        console.log("Sinopse: "+overview); */
+        
         await Serie.findOne({where: {id: id}})
             .then(async check_serie => {
                 if (check_serie == undefined){

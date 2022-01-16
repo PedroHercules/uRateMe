@@ -8,5 +8,26 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "sequelize": "^7.0.0-alpha.3"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend da aplicacao",
+  "main": "src/index.js",
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "supertest": "^6.2.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroHercules/uRateMe.git"
+  },
+  "author": "pedro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroHercules/uRateMe/issues"
+  },
+  "homepage": "https://github.com/PedroHercules/uRateMe#readme"
 }
