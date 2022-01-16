@@ -54,7 +54,7 @@ export default function Filmes() {
                                 rateApi={movie.rateApi}
                                 nComments={movie.nComments} 
                                 isMovie={true} 
-                                type="Ação/Ficção"/>
+                                type={movie.genre}/>
                         </div>
                     ))}
                 </section>

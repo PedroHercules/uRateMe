@@ -4,6 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
 const adminAuth = require('../middlewares/admin');
+const {Op} = require('sequelize');
 
 const Rate = require('../database/Rate.js');
 
@@ -28,7 +29,19 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const serie = await getSerie(req.body.id);
         const { id, name, overview, genres, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
-        const genre = genres[0].name + "/" + genres[1].name;
+        let genre = "";
+        if (genres.length > 1) {
+            genre = genres[0].name + "/" + genres[1].name;
+        }else{
+            console.log(genres.length)
+            genre = genres[0].name;
+        }
+
+        
+        
+        /* console.log("Name: "+ name);
+        console.log("Sinopse: "+overview); */
+        
         await Serie.findOne({where: {id: id}})
             .then(async check_serie => {
                 if (check_serie == undefined){
@@ -90,6 +103,23 @@ router.get('/show/:id', async (req, res) => {
         }
     });
 
-})
+});
+
+router.post('/search', async (req, res) => {
+    try {
+        const query = req.body.search;
+        const serie = await Serie.findAll({
+            where: {
+                title: {
+                    [Op.like]: "%" + query + "%"
+                }
+            }
+        });
+
+        return res.send({serie});
+    } catch (error) {
+        return res.status(400).send({error: error});
+    }
+});
 
 module.exports = app => app.use('/series', router);

@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-
+import history from '../../history';
 import { Context } from "../../Context/authContext";
 
 import './styles.css';
@@ -45,9 +45,9 @@ export default function PageHeader({ SearchIsVisible }){
             </div>
             <div className="dropDownMenu" style={{'display': dropDownMenu ? 'flex' : 'none'}}>
                 <span>.</span>
-                <div>
+                <div onClick={() => {history.push('/updateProfile')}}>
                     <img src={profile} width="19" height="19" alt='icone de perfil'/>
-                    <a href='/updateProfile'>Perfil</a>
+                    <a >Perfil</a>
                 </div>
                 <div onClick={handleLogout} >
                     <img src={logout} width="19" height="19" alt='icone de sair'/>

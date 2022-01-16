@@ -58,20 +58,20 @@ export default function Home() {
                     <a href="/series">Mostrar tudo</a>
                 </div>
                 <section>
-                    {series.map((movie, index) => (
+                    {series.map((serie, index) => (
                         <div key={index}>
                             <Card  
-                                id={movie.id} 
-                                title={movie.title} 
-                                photo={movie.photo} 
-                                backdrop_path={movie.backdrop_path}
-                                sinopse={movie.sinopse} 
-                                date={movie.date} 
-                                rateUsers={movie.rateUsers} 
-                                rateApi={movie.rateApi}
-                                nComments={movie.nComments} 
-                                isMovie={true} 
-                                type={movie.genre}/>
+                                id={serie.id} 
+                                title={serie.title} 
+                                photo={serie.photo} 
+                                backdrop_path={serie.backdrop_path}
+                                sinopse={serie.sinopse} 
+                                date={serie.date} 
+                                rateUsers={serie.rateUsers} 
+                                rateApi={serie.rateApi}
+                                nComments={serie.nComments} 
+                                isMovie={false} 
+                                type={serie.genre}/>
                         </div>
                     ))}
                 </section>

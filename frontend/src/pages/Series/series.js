@@ -53,7 +53,7 @@ export default function Series() {
                                 rateApi={movie.rateApi}
                                 nComments={movie.nComments}
                                 isMovie={false} 
-                                type="Ação/Ficção"/>
+                                type={movie.genre}/>
                         </div>
                     ))}
                 </section>

@@ -5,6 +5,7 @@ const axios = require('axios');
 const router = express.Router();
 const User = require('../database/User.js');
 const adminAuth = require('../middlewares/admin.js');
+const {Op} = require('sequelize')
 
 
 async function getMovie(id_movie) {
@@ -27,7 +28,12 @@ router.post('/update', adminAuth, async (req, res) => {
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
         const { id, title, overview, genres, vote_average, release_date, poster_path, backdrop_path } = movie;
-        const genre = genres[0].name + "/" + genres[1].name;
+        let genre = ""
+        if (genres.length > 1) {
+            genre = genres[0].name + "/" + genres[1].name;
+        }else{
+            genre = genres[0].name;
+        }
         await Movie.findOne({where: {id: id}})
             .then(async check_movie => {
                 if(check_movie == undefined) {
@@ -87,6 +93,25 @@ router.get('/show/:id', async (req, res) => {
         }
     });
 })
+
+
+router.post('/search', async (req, res) => {
+    try {
+        const query = req.body.search;
+        console.log(query);
+        const movie = await Movie.findAll({
+            where: {
+                title: {
+                    [Op.like]: "%" + query + "%"
+                }
+            }
+        });
+
+        res.send({movie});
+    } catch (error) {
+        return res.status(400).send({error: error});
+    }
+});
 
 
 module.exports = app => app.use('/movies', router);
