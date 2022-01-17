@@ -23,10 +23,13 @@ async function getMovie(id_movie) {
     return data;
 }
 
-router.post('/update', adminAuth, async (req, res) => {
+router.post('/update', async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
         const movie = await getMovie(req.body.id);
+        if(movie == undefined){
+            return res.status(400).send({'error': 'Filme não encontrado na base de dados da API'})
+        }
         const { id, title, overview, genres, vote_average, release_date, poster_path, backdrop_path } = movie;
         let genre = ""
         if (genres.length > 1) {
@@ -47,7 +50,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         photo: poster + poster_path,
                         backdrop_path: poster + backdrop_path
                     });
-                    res.send({mensage: 'Cadastrado com sucesso!'})
+                    res.status(200).send({mensage: 'Cadastrado com sucesso!'})
                 }else{
                     res.status(400).send({error: "Filme já existe"});
                 }
@@ -98,7 +101,6 @@ router.get('/show/:id', async (req, res) => {
 router.post('/search', async (req, res) => {
     try {
         const query = req.body.search;
-        console.log(query);
         const movie = await Movie.findAll({
             where: {
                 title: {
@@ -107,7 +109,11 @@ router.post('/search', async (req, res) => {
             }
         });
 
-        res.send({movie});
+        if(movie == {}) {
+            return res.status(400).send({"error": "filme não encontrado"})
+        }
+
+        res.status(200).send({movie});
     } catch (error) {
         return res.status(400).send({error: error});
     }

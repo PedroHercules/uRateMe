@@ -24,10 +24,13 @@ async function getSerie(id_serie) {
 }
 
 
-router.post('/update', adminAuth, async (req, res) => {
+router.post('/update', async (req, res) => {
     try{
         const poster = "https://image.tmdb.org/t/p/w500";
         const serie = await getSerie(req.body.id);
+        if(serie==undefined){
+            return res.status(400).send({"error": "Serie não encontrada"})
+        }
         const { id, name, overview, genres, vote_average, first_air_date, poster_path, backdrop_path, number_of_seasons} = serie;
         let genre = "";
         if (genres.length > 1) {
@@ -36,11 +39,6 @@ router.post('/update', adminAuth, async (req, res) => {
             console.log(genres.length)
             genre = genres[0].name;
         }
-
-        
-        
-        /* console.log("Name: "+ name);
-        console.log("Sinopse: "+overview); */
         
         await Serie.findOne({where: {id: id}})
             .then(async check_serie => {
@@ -56,7 +54,7 @@ router.post('/update', adminAuth, async (req, res) => {
                         backdrop_path: poster + backdrop_path,
                         nSeasons: number_of_seasons
                     });
-                    res.send({mensage: 'Cadastrado com sucesso!'})
+                    res.status(200).send({mensage: 'Cadastrado com sucesso!'})
                 }else{
                     console.log('Ja existe');
                     res.status(400).send({error: "Serie ja existe"});
@@ -116,7 +114,7 @@ router.post('/search', async (req, res) => {
             }
         });
 
-        return res.send({serie});
+        return res.status(200).send({serie});
     } catch (error) {
         return res.status(400).send({error: error});
     }

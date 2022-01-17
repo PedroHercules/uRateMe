@@ -17,12 +17,30 @@ router.post('/register', async (req, res) => {
     try{
         let nickname = req.body.nickname;
         let email = req.body.email;
+        let password = req.body.password;
+        let isAdmin = false;
+        if(email.includes("@") == false || password < 6){
+            return res.status(400).send({error: 'dados inválidos'})
+        }
+
+        const existUsers = await User.findAll();
+        if (Object.keys(existUsers).length == 0){
+            isAdmin = true;
+        }
+
         await User.findOne({where: {[Op.or]: [{nickname: nickname},{email: email}]}})
             .then(async user => {
                 if (user == undefined){
-                    const user = await User.create(req.body);
+                    const user = await User.create(
+                        {
+                            nickname: nickname,
+                            email: email,
+                            password: password,
+                            isAdmin: isAdmin
+                        }
+                    );
                     user.password = undefined;
-                    res.send({
+                    res.status(200).send({
                         user, 
                         token: generateToken({id: user.id})
                     });
