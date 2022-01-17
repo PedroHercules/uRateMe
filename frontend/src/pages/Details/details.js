@@ -98,6 +98,11 @@ export default function Details(props) {
                     <div className='details-info-footer-right'>
                         <h3>Genero: {movie.genre}</h3>
                         <h3>Data de Lançamento: {movie.date}</h3>
+                        {
+                            props.location.state.isMovie == false ?
+                            (<h3>Temporadas: {movie.nSeasons}</h3>):
+                            <h3></h3>
+                        }
                     </div>
                 </div>
             </main>
