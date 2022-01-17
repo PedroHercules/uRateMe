@@ -64,14 +64,14 @@ export default function Routes() {
             <CustoRoute isPrivate exact path="/sobre" component={Sobre} />
             <CustoRoute isPrivate exact path="/ajuda" component={Ajuda} />
             
-            <CustoRoute exact path="/Profile"  render={(props) => (
+            <CustoRoute isPrivate exact path="/Profile"  render={(props) => (
                 <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
                     <NavBarProfile select={1} {...props} />
                     <Footer {...props} />
                 </div>
             )}/>
-            <CustoRoute exact path="/Rates"  render={(props) => (
+            <CustoRoute isPrivate exact path="/Rates"  render={(props) => (
                 <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
                     <div style={{'height': '100%', 'display': 'flex',}}>
@@ -81,7 +81,7 @@ export default function Routes() {
                     <Footer {...props} />
                 </div>
             )}/>
-            <CustoRoute exact path="/updateProfile"  render={(props) => (
+            <CustoRoute isPrivate exact path="/updateProfile"  render={(props) => (
                 <div style={{'height': '100%', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'space-between'}}>
                     <PageHeader />
                     <div style={{'height': '100%', 'display': 'flex',}}>
