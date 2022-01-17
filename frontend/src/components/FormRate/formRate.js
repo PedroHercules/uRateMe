@@ -10,40 +10,49 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
 
     const [score, setScore] = useState(1);
     const [comment, setComment] = useState('');
+    const [mensage, setMensage] = useState(false);
     const {user} = useContext(Context);
 
     async function rate(e) {
         console.log(userId);
         e.preventDefault();
         
-        await api.post(`rate/send/${contentId}`, {
-            "score": score,
-            "comment": comment,
-            "contentId": contentId,
-            "user": user.id,
-            "tipo": tipo,
-            "name": name
-        }).then(response => {
-            console.log(response);
-            history.go(0);
-        }).catch(err => {
-            console.log(err);
-        })
+        if(comment.length == 0) {
+            setMensage(true);
+        } else {
+            await api.post(`rate/send/${contentId}`, {
+                "score": score,
+                "comment": comment,
+                "contentId": contentId,
+                "user": user.id,
+                "tipo": tipo,
+                "name": name
+            }).then(response => {
+                console.log(response);
+                history.go(0);
+            }).catch(err => {
+                console.log(err);
+            })
+            setMensage(false);
+        }
         
     }
 
     async function updateRate(e) {
         e.preventDefault();
-
-        console.log(rateId);
         
-        await api.post(`rate/update/${rateId}`, {
-            "score": score,
-            "comment": comment,
-        }).then(response => {
-            console.log(response);
-            history.go(0);
-        })
+        if(comment.length == 0) {
+            setMensage(true);
+        } else {
+            await api.post(`rate/update/${rateId}`, {
+                "score": score,
+                "comment": comment,
+            }).then(response => {
+                console.log(response);
+                history.go(0);
+            })
+            setMensage(false);
+        }
     }
 
     function cancel() {
@@ -82,7 +91,7 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
                         type="text" 
                         placeholder="Adicionar um comentário público"
                         maxLength="300"
-                        onChange={(e) =>{setComment(e.target.value)}} 
+                        onChange={(e) =>{setComment(e.target.value); setMensage(false)}} 
                         onLoad={(e) =>{setComment(e.target.value)}}
                         value={comment}
                         required
@@ -96,9 +105,10 @@ export default function FormRate({ rateId, contentId, userId, nickname, upScore,
                             <button className="" onClick={cancel}>Cancelar</button>
                         </div>
                     )}
-                    
                 </div>
+                    {mensage && <span id="mensagem-required">Por favor informe um comentário</span>}
             </form>
+            
         </div>
     );
 }

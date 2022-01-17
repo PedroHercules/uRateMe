@@ -1,5 +1,6 @@
 .comment {
     display: flex;
+    margin-bottom: 50px;
 }
 
 .comment-left {
@@ -98,4 +99,17 @@
     outline: 0;
     margin-right: 10px;
     cursor: pointer;
+}
+
+#mensagem-required {
+    color: #891f1e;
+    margin: 10px 0px;
+    padding: 5px 5px;
+    font: 400 0.8rem Poppins;
+    border: 1px solid #891f1e;
+    border-radius: 2px;
+    background-color: #e9bdbd;
+    position: absolute;
+    margin-top: 130px;
+    width: 68%;
 }
